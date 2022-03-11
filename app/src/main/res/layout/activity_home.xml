@@ -5,7 +5,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:orientation="vertical">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        app:cardBackgroundColor="@color/azul1"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"/>
+    </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="40dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NomeApp"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="CONSULTAR VEÍCULO"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="ITINERÁRIO"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
