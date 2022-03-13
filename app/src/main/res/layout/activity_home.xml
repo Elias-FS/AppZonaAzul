@@ -8,7 +8,7 @@
     tools:context=".HomeActivity"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+   <!-- <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:outlineAmbientShadowColor="@color/black"
@@ -23,12 +23,12 @@
             android:textSize="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="2dp"/>
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView> -->
 
     <androidx.cardview.widget.CardView
-        android:layout_width="260dp"
+        android:layout_width="190dp"
         android:layout_height="260dp"
-        android:outlineAmbientShadowColor="@color/black"
+        android:outlineAmbientShadowColor="@color/blackShadow"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="70dp"
         >
@@ -43,13 +43,14 @@
                 android:layout_width="160dp"
                 android:layout_height="130dp"
                 android:layout_marginTop="40dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_gravity="center_horizontal"/>
+                android:src="@drawable/logo"
+                android:layout_gravity="center_horizontal"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NomeApp"
+                android:text="Blue Zone"
                 android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"/>
@@ -70,5 +71,5 @@
         android:layout_height="wrap_content"
         android:text="ITINERÁRIO"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="30dp"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
