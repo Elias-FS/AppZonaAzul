@@ -22,7 +22,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:text="Insira a placa do veículo"
+        android:hint="Insira a placa do veículo"
         android:textColor="@color/gray"
         android:layout_gravity="center_horizontal"/>
 
