@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    expo-anime-finder
+    Blue Zone
   </h1>
   <blockquote>
     App Blue Zone
