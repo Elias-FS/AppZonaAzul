@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_camera.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_camera_preview.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.24954710144927536" />
+        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
         <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.36666666666666664" />
         <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/elias/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
