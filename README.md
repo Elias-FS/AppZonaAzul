@@ -90,7 +90,11 @@ This project is under the MIT license. See the file [LICENSE](LICENSE) for more 
 
 <div align="center">
 
-Created by [Carlos Mesquita](https://github.com/kevinsilvadev) 💜
-
+Created by:
+  -> [Kevin Silva](https://github.com/kevinsilvadev) 💜
+  -> [Elias Fausto](https://github.com/Elias-FS)
+  -> [Emilio Biase](https://github.com/emiliobiasi)
+  -> [Davi Okida](https://github.com/Davi-SO)
+  -> [Gian Dutra](https://github.com/GianDutra)
 </div>
 
