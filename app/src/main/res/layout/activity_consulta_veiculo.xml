@@ -40,11 +40,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"/>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="190dp"
-        android:layout_height="260dp"
-        android:outlineAmbientShadowColor="@color/blackShadow"
-        android:layout_gravity="center_horizontal" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="260dp"
@@ -52,6 +47,6 @@
         android:text="REGISTRAR IRREGULARIDADE"
         android:layout_gravity="center_horizontal"/>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
