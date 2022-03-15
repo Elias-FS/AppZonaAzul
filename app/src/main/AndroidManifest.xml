@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.appzonaazul">
 
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,16 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppZonaAzul">
-        <activity
-            android:name=".ConsultaVeiculoActivity"
-            android:label="Consultar Veículo"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <activity
+            android:name=".CameraPreviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppZonaAzul.NoActionBar"/>
+
+
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false"/>
 
 
         <activity
@@ -26,11 +32,21 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".ConsultaVeiculoActivity"
+            android:exported="true"
+            android:label="Consultar Veículo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
