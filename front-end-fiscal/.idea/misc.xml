@@ -3,18 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_camera.xml" value="0.18802083333333333" />
-        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_camera_preview.xml" value="0.358695652173913" />
-        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.24954710144927536" />
-        <entry key="..\:/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
-        <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.264" />
+        <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.36666666666666664" />
         <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_imagens_irregularidade.xml" value="0.25416666666666665" />
         <entry key="..\:/Faculdade ENG Software/03 semestre/Android Studio Projects/AppZonaAzul/app/src/main/res/layout/activity_itinerario.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/elias/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/elias/OneDrive/Documentos/Programacao/Android/AppZonaAzul/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
+        <entry key="..\:/Users/elias/OneDrive/Documentos/Programacao/Android/AppZonaAzul/app/src/main/res/layout/activity_consulta_veiculo.xml" value="0.264" />
         <entry key="..\:/Users/elias/OneDrive/Documentos/Programacao/Android/AppZonaAzul/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/AppZonaAzul/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1825" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/AppZonaAzul/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1825" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/AppZonaAzul/app/src/main/res/layout/activity_camera.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/AppZonaAzul/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
