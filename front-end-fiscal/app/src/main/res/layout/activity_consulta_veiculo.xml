@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Placa do Veículo"
         android:textColor="@color/black"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="80dp"
         />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Situação do Veículo"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:textSize="25dp"
         android:textColor="@color/black"
         />
@@ -130,11 +130,12 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegistrarIrregularidade"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="REGISTRAR IRREGULARIDADE"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
 
 

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <div align="center">
   <h1>
     Blue Zone
@@ -99,5 +97,4 @@ Created by:
   -> [Davi Okida](https://github.com/Davi-SO)
   -> [Gian Dutra](https://github.com/GianDutra)
 </div>
->>>>>>> cfe9b65978892a6cade7d70dc79092f8e1ddb20d
 

@@ -60,6 +60,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpenConsultarVeiculo"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="CONSULTAR VEÍCULO"
