@@ -15,7 +15,8 @@
         android:theme="@style/Theme.AppZonaAzul">
         <activity
             android:name=".ItinerarioActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Itinerário">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
