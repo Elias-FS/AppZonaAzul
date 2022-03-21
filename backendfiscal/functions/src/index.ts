@@ -4,6 +4,7 @@ import * as admin from "firebase-admin";
 const app = admin.initializeApp();
 const db = app.firestore();
 const colPagamentos = db.collection("Pagamento");
+const colTicket = db.collection("Ticket")
 const colIrregularidades = db.collection("Irregularidade");
 
 //Adicionar irregularidade
@@ -50,6 +51,17 @@ export const getAll = functions
         tires.push(doc.data());
       });
       response.status(200).json(tires);
+    });
+
+export const getTickets = functions
+    .region("southamerica-east1")
+    .https.onRequest(async (request, response) => {
+      const tickets : FirebaseFirestore.DocumentData = [];
+      const snapshot = await colTicket.get();
+      snapshot.forEach((doc) => {
+        tickets.push(doc.data());
+      });
+      response.status(200).json(tickets);
     });
 
 

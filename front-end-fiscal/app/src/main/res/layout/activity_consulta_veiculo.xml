@@ -20,6 +20,7 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etPlaca"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:hint="Insira a placa do veículo"
@@ -28,6 +29,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVerificar"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="VERIFICAR"
@@ -59,6 +61,7 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/tvHoraChegada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hora de chegada:"
@@ -75,6 +78,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
             <TextView
+                android:id="@+id/tvHoraSaida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hora limite:"
