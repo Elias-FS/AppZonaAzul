@@ -4,6 +4,9 @@ import java.util.*
 
 data class Ticket (
     val placaVeiculo: String,
-    val horaInicio: Date,
-    val horaFim: Date
-)
+    val horaInicio: String,
+    val horaFim: String
+){
+
+
+}

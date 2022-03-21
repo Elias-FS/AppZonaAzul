@@ -1,12 +1,23 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
+
+
 const app = admin.initializeApp();
 const db = app.firestore();
 const colPagamentos = db.collection("Pagamento");
 const colTicket = db.collection("Ticket")
 const colIrregularidades = db.collection("Irregularidade");
 
+function placa_aleatória():String {
+  return (
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
+  '-' +
+  Math.floor(Math.random()*9999))
+
+}
 //Adicionar irregularidade
 export const addIrregularidades = functions
     .region("southamerica-east1")
@@ -59,9 +70,27 @@ export const getTickets = functions
       const tickets : FirebaseFirestore.DocumentData = [];
       const snapshot = await colTicket.get();
       snapshot.forEach((doc) => {
+        
         tickets.push(doc.data());
       });
       response.status(200).json(tickets);
     });
 
+
+export const addTicket = functions
+    .region("southamerica-east1")
+    .https.onRequest(async (request, response) => {
+      const ticket = {
+        placaVeiculo: placa_aleatória(),
+        horaInicio: new Date().toUTCString().slice(17,26),
+        horaFim: new Date((new Date()).getTime() + 3600000).toUTCString().slice(17,26),
+      };
+      try {
+        const docRef = colTicket.add(ticket);
+        response.send([ticket,await docRef]);        
+      } catch (e) {
+        functions.logger.error("Erro na função addTicket");
+        response.send("Erro na função addTicket");
+      }
+    });
 
