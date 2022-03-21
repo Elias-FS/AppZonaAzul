@@ -11,16 +11,18 @@ import br.com.appzonaazul.util.RetrofitClient
 import br.com.appzonaazul.api.FireStore
 import br.com.appzonaazul.classes.Ticket
 import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.Response
 
 class ConsultaVeiculoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityConsultaVeiculoBinding
-    private lateinit var tvHoraChegada:AppCompatTextView
+    private lateinit var tvHoraInicio:AppCompatTextView
     private lateinit var btnVerificar:AppCompatButton
     private lateinit var etPlaca:AppCompatEditText
-    private lateinit var tvHoraSaida:AppCompatTextView
+    private lateinit var tvHoraFim:AppCompatTextView
+    private lateinit var tvTempoDecorrido:AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //inflar a activity
@@ -32,10 +34,9 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
             abrirTelaRegistrarIrregularidade()
 
         }
-        tvHoraSaida = findViewById(R.id.tvHoraSaida)
+        tvHoraFim = findViewById(R.id.tvHoraFim)
         btnVerificar = findViewById(R.id.btnVerificar)
         btnVerificar.setOnClickListener {
-            tvHoraSaida.text = "here"
             etPlaca = findViewById(R.id.etPlaca)
             consultaVeiculo(etPlaca.text.toString())
         }
@@ -51,30 +52,30 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
     private fun consultaVeiculo(placa: String) {
         val firebase = RetrofitClient.getRetrofitInstance().create(FireStore::class.java)
         println(firebase.toString())
-        firebase.getTickets().enqueue(object : retrofit2.Callback<JsonObject> {
-            override fun onResponse(call: Call<JsonObject>,response: Response<JsonObject>){
-                val data = mutableListOf<String>()
-                response.body()?.keySet()?.iterator()?.forEach {
+        firebase.getTickets().enqueue(object : retrofit2.Callback<JsonArray> {
+            override fun onResponse(call: Call<JsonArray>,response: Response<JsonArray>){
+                val data = mutableListOf<JsonElement>()
+                response.body()?.iterator()?.forEach {
                     data.add(it)
                 }
-                println("here")
-                val tickets : MutableList<Ticket> = mutableListOf<Ticket>()
+                val tickets = mutableListOf<Ticket>()
                 for(i in data){
                    tickets.add(Gson().fromJson(i,Ticket::class.java))
                 }
-                println("here")
-                tvHoraChegada =  findViewById(R.id.tvHoraChegada)
+                tvHoraInicio =  findViewById(R.id.tvHoraInicio)
+                tvHoraFim = findViewById(R.id.tvHoraFim)
+                tvTempoDecorrido = findViewById(R.id.tvTempoDecorrido)
                 for (it in tickets){
-                    println(it)
                     if (it.placaVeiculo==placa){
-                        tvHoraChegada.text = it.placaVeiculo.toString()
+                        tvHoraInicio.text = it.horaInicio
+                        tvHoraFim.text = it.horaFim
                     }
                 }
 
 
             }
 
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
                 println("Error de conexão")
             }
         })
