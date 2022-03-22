@@ -1,5 +1,6 @@
 package br.com.appzonaazul
 
+import android.appwidget.AppWidgetProvider
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
     private lateinit var etPlaca:AppCompatEditText
     private lateinit var tvHoraFim:AppCompatTextView
     private lateinit var tvTempoDecorrido:AppCompatTextView
+    private lateinit var tvStatus:AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //inflar a activity
@@ -65,10 +67,18 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                 tvHoraInicio =  findViewById(R.id.tvHoraInicio)
                 tvHoraFim = findViewById(R.id.tvHoraFim)
                 tvTempoDecorrido = findViewById(R.id.tvTempoDecorrido)
+                tvStatus = findViewById(R.id.tvStatus)
                 for (it in tickets){
                     if (it.placaVeiculo==placa){
                         tvHoraInicio.text = it.horaInicio
                         tvHoraFim.text = it.horaFim
+                        tvTempoDecorrido.text = it.tempoDecorrido()
+                        if (it.tempoDecorrido().subSequence(0,2).toString().toInt() >= 1)
+                            if(it.tempoDecorrido().subSequence(3,5).toString().toInt()>0||
+                                it.tempoDecorrido().subSequence(6,8).toString().toInt()>0)
+                                    tvStatus.text = "Irregular"
+
+
                     }
                 }
 
