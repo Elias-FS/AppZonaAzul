@@ -93,4 +93,3 @@ export const addTicket = functions
         response.send("Erro na função addTicket");
       }
     });
-
