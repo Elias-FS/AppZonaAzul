@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import br.com.appzonaazul.databinding.ActivityHomeBinding
+import br.com.appzonaazul.databinding.ActivityItinerarioBinding
 
 
 class HomeActivity : AppCompatActivity() {
@@ -18,10 +19,13 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnOpenConsultarVeiculo.setOnClickListener {
             //clicar para ir consultar o veiculo
             abrirTelaConsultarVeiculo()
+        }
+
+        binding.btnOpenItinerario.setOnClickListener {
+            openWindowItinerario()
         }
 
     }
@@ -29,6 +33,13 @@ class HomeActivity : AppCompatActivity() {
         //navegar para a outra activity
         val intentConsultaVeiculo = Intent(this, ConsultaVeiculoActivity::class.java)
         startActivity(intentConsultaVeiculo)
+
+    }
+
+    private fun openWindowItinerario() {
+        //navegar para a outra activity
+        val openItinerario = Intent(this, ItinerarioActivity::class.java)
+        startActivity(openItinerario)
 
     }
 }
