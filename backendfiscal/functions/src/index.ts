@@ -77,13 +77,16 @@ export const getTickets = functions
     });
 
 
+// Insert Ticket
+
 export const addTicket = functions
     .region("southamerica-east1")
     .https.onRequest(async (request, response) => {
       const ticket = {
-        placaVeiculo: placa_aleatória(),
-        horaInicio: new Date().toUTCString().slice(17,26),
-        horaFim: new Date((new Date()).getTime() + 3600000).toUTCString().slice(17,26),
+        placaVeiculo: placa_aleatória(),         // horário de brasília
+        horaInicio: new Date(new Date().getTime() - 3600000 * 3).toUTCString().slice(17,26),
+                                                // tempo limite: 1 hora
+        horaFim: new Date(new Date().getTime() + 3600000).toUTCString().slice(17,26),
       };
       try {
         const docRef = colTicket.add(ticket);
