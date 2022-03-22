@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wall"
     tools:context=".HomeActivity"
     android:orientation="vertical">
 
@@ -37,12 +38,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="@color/azul5"
             android:padding="16dp">
 
             <ImageView
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:layout_marginTop="40dp"
+                android:layout_width="300dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="0dp"
                 android:src="@drawable/logo"
                 android:layout_gravity="center_horizontal"
                 />
@@ -50,8 +52,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:text="Blue Zone"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="26sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"/>
 
@@ -59,7 +63,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnOpenConsultarVeiculo"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
@@ -67,7 +71,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnOpenItinerario"
         android:layout_width="260dp"
         android:layout_height="wrap_content"

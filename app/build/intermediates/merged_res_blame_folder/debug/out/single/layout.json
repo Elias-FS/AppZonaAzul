@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_home.xml",
+        "source": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\src\\main\\res\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_consulta_veiculo.xml",
+        "source": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\src\\main\\res\\layout\\activity_consulta_veiculo.xml"
+    },
+    {
+        "merged": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_camera.xml",
+        "source": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\src\\main\\res\\layout\\activity_camera.xml"
+    },
+    {
+        "merged": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_camera_preview.xml",
+        "source": "C:\\Users\\elias\\OneDrive\\Documentos\\Programacao\\Android\\AppZonaAzul\\app\\src\\main\\res\\layout\\activity_camera_preview.xml"
+    }
+]

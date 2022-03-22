@@ -5,51 +5,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wall"
     tools:context=".HomeActivity"
     android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="285dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:outlineAmbientShadowColor="@color/watergreen"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp">
+        android:layout_margin="20dp">
     </androidx.cardview.widget.CardView>
 
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
+        android:orientation="vertical"
         android:stretchColumns="1">
     <TableRow>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="26dp"
             android:text="PERÍODO"
             android:gravity="center_horizontal"
             android:padding="10dp" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="26dp"
             android:text="ÁREA"
             android:gravity="center_horizontal"
             android:padding="10dp" />
     </TableRow>
     <TableRow>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="06:00 - 07:00\n\n07:00 - 08:00\n\n08:00 - 09:00\n\n09:00 - 10:00\n\n10:00 - 11:00\n\n11:00 - 12:00\n\n12:00 - 13:00\n\n13:00 - 14:00"
+            android:textColor="@color/white"
+            android:text="07:00 - 08:00"
             android:gravity="center_horizontal"
             android:padding="10dp" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Área 1\n\nÁrea 2\n\nÁrea 3\n\nÁrea 4\n\nÁrea 5\n\nÁrea 6\n\nÁrea 7\n\nÁrea 8"
             android:gravity="center_horizontal"
             android:padding="10dp" />
