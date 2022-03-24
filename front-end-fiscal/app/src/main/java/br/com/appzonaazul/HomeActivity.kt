@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun openWindowItinerario() {
         //navegar para a outra activity
-        val openItinerario = Intent(this, ItinerarioActivity::class.java)
+        val openItinerario = Intent(this, MapsActivity::class.java)
         startActivity(openItinerario)
 
     }
