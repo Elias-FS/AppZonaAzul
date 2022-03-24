@@ -53,11 +53,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     .snippet(place.adress)
                     .position(place.latLng)
                     .icon(
-                        BitmapHelper.vectorToBitMap(this, R.drawable.ic_launcher_foreground, ContextCompat.getColor(this, R.color.teal_200))
+                        BitmapHelper.vectorToBitMap(this, R.drawable.outline_location_on_black_36dp, ContextCompat.getColor(this, R.color.teal_200))
                     )
             )
                 if (marker != null) {
-                    marker.tag = place
+                    marker.tag = places
                 }
 
             }
