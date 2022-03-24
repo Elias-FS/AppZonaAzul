@@ -1,12 +1,9 @@
 package br.com.appzonaazul
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import br.com.appzonaazul.databinding.ActivityHomeBinding
-import br.com.appzonaazul.databinding.ActivityItinerarioBinding
 
 
 class HomeActivity : AppCompatActivity() {
