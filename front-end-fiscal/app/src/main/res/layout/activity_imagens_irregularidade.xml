@@ -65,13 +65,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="REPETIR FOTO"/>
+        android:text="REPETIR FOTO"
+        app:cornerRadius="50dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="ENVIAR"/>
+        android:text="ENVIAR"
+        app:cornerRadius="50dp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
