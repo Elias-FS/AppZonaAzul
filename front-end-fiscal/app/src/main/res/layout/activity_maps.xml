@@ -6,4 +6,57 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    tools:context=".MapsActivity">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:orientation="vertical"
+        android:stretchColumns="1">
+
+        <TableRow>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="26dp"
+                android:text="PERÍODO"
+                android:gravity="center_horizontal"
+                android:padding="10dp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="26dp"
+                android:text="ÁREA"
+                android:gravity="center_horizontal"
+                android:padding="10dp" />
+        </TableRow>
+        <TableRow>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="07:00 - 08:00"
+                android:gravity="center_horizontal"
+                android:padding="10dp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Área 1\n\nÁrea 2\n\nÁrea 3\n\nÁrea 4\n\nÁrea 5\n\nÁrea 6\n\nÁrea 7\n\nÁrea 8"
+                android:gravity="center_horizontal"
+                android:padding="10dp" />
+        </TableRow>
+    </TableLayout>
+</fragment>
+
+
+
