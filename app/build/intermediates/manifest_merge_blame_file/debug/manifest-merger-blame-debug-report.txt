@@ -1,0 +1,130 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="br.com.appzonaazul"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="27"
+8-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature android:name="android.hardware.camera.any" />
+11-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:5:5-64
+11-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:5:19-61
+12
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:7:5-65
+13-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:7:22-62
+14
+15    <application
+15-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:9:5-54:19
+16        android:allowBackup="true"
+16-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:10:9-35
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.7.0] C:\Users\elias\.gradle\caches\transforms-3\a927d619ce56469f35da2fa2f2cd3b0b\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+18        android:debuggable="true"
+19        android:extractNativeLibs="false"
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:11:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:12:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:13:9-54
+23        android:supportsRtl="true"
+23-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:14:9-35
+24        android:testOnly="true"
+25        android:theme="@style/Theme.AppZonaAzul" >
+25-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:15:9-49
+26        <activity
+26-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:16:9-21:15
+27            android:name="br.com.appzonaazul.CameraPreviewActivity"
+27-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:18:13-50
+28            android:exported="false"
+28-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:19:13-37
+29            android:theme="@style/Theme.AppZonaAzul.NoActionBar" />
+29-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:20:13-65
+30        <activity
+30-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:23:9-25:40
+31            android:name="br.com.appzonaazul.CameraActivity"
+31-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:24:13-43
+32            android:exported="false" />
+32-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:25:13-37
+33        <activity
+33-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:27:9-35:20
+34            android:name="br.com.appzonaazul.HomeActivity"
+34-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:28:13-41
+35            android:exported="true" >
+35-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:29:13-36
+36            <intent-filter>
+36-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:30:13-34:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:31:17-69
+37-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:31:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:33:17-77
+39-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:33:27-74
+40            </intent-filter>
+41        </activity>
+42        <activity
+42-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:36:9-46:20
+43            android:name="br.com.appzonaazul.ConsultaVeiculoActivity"
+43-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:38:13-52
+44            android:exported="true"
+44-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:39:13-36
+45            android:label="Consultar Veículo" >
+45-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:40:13-46
+46            <intent-filter>
+46-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:30:13-34:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:31:17-69
+47-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:31:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:33:17-77
+49-->C:\Users\elias\OneDrive\Documentos\Programacao\Android\AppZonaAzul\app\src\main\AndroidManifest.xml:33:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <service
+53-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:26:9-35:19
+54            android:name="androidx.camera.core.impl.MetadataHolderService"
+54-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:27:13-75
+55            android:enabled="false"
+55-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:28:13-36
+56            android:exported="false" >
+56-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:29:13-37
+57            <meta-data
+57-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:32:13-34:89
+58                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+58-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:33:17-103
+59                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+59-->[androidx.camera:camera-camera2:1.1.0-beta02] C:\Users\elias\.gradle\caches\transforms-3\c7bac674194869c6420505268534c97a\transformed\camera-camera2-1.1.0-beta02\AndroidManifest.xml:34:17-86
+60        </service>
+61
+62        <provider
+62-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+63            android:name="androidx.startup.InitializationProvider"
+63-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+64            android:authorities="br.com.appzonaazul.androidx-startup"
+64-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+65            android:exported="false" >
+65-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+66            <meta-data
+66-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+67                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+67-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+68                android:value="androidx.startup" />
+68-->[androidx.emoji2:emoji2:1.0.0] C:\Users\elias\.gradle\caches\transforms-3\e501fbc125b967976ed2a47954f25095\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+69            <meta-data
+69-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\elias\.gradle\caches\transforms-3\e355f95edd1b1b3c63cea57ba8ae1ff1\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+70                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+70-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\elias\.gradle\caches\transforms-3\e355f95edd1b1b3c63cea57ba8ae1ff1\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+71                android:value="androidx.startup" />
+71-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\elias\.gradle\caches\transforms-3\e355f95edd1b1b3c63cea57ba8ae1ff1\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+72        </provider>
+73    </application>
+74
+75</manifest>
