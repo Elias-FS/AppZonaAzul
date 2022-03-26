@@ -29,7 +29,11 @@ Aplicativo para Zona Azul desenvolvido em Kotlin
 ### 📷 Screenshots
 
 <div align="center">
-  <img src=".github/images/screenshots.png" alt="Screenshot" width="90%"/>
+  <img src="https://github.com/Elias-FS/Imagens-Repositorios/blob/main/AppZonaAzul/home.png" alt="Screenshot" width="30%"/>
+  <img src="https://github.com/Elias-FS/Imagens-Repositorios/blob/main/AppZonaAzul/consultarVeiculo.png" alt="Screenshot" width="30%"/>
+  <img src="https://github.com/Elias-FS/Imagens-Repositorios/blob/main/AppZonaAzul/abrirCamera.png" alt="Screenshot" width="30%"/>
+  <img src="https://github.com/Elias-FS/Imagens-Repositorios/blob/main/AppZonaAzul/tirarFoto.png" alt="Screenshot" width="30%"/>
+  <img src="https://github.com/Elias-FS/Imagens-Repositorios/blob/main/AppZonaAzul/itinerario.png" alt="Screenshot" width="30%"/>
 </div>
 
 ### 🛠 Technologies
