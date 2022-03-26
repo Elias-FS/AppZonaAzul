@@ -92,9 +92,9 @@ This project is under the MIT license. See the file [LICENSE](LICENSE) for more 
 
 Created by:
   -> [Kevin Silva](https://github.com/kevinsilvadev) 💜
-  -> [Elias Fausto](https://github.com/Elias-FS)
-  -> [Emilio Biasi](https://github.com/emiliobiasi)
-  -> [Davi Okida](https://github.com/Davi-SO)
-  -> [Gian Dutra](https://github.com/GianDutra)
+  -> [Elias Fausto](https://github.com/Elias-FS) 💜
+  -> [Emilio Biasi](https://github.com/emiliobiasi) 💜
+  -> [Davi Okida](https://github.com/Davi-SO) 💜
+  -> [Gian Dutra](https://github.com/GianDutra) 💜
 </div>
 
