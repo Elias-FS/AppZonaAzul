@@ -9,6 +9,14 @@ const colPagamentos = db.collection("Pagamento");
 const colTicket = db.collection("Ticket")
 const colIrregularidades = db.collection("Irregularidade");
 
+
+//interface callableResponse{
+//  status:string,
+//  message: string,
+//  JSON: payload
+//}
+
+
 function placa_aleatória():String {
   return (
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
