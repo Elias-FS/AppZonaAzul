@@ -12,66 +12,69 @@
     android:orientation="vertical">
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="350dp"
-        android:layout_margin="8dp"
-        android:background="@color/azul5">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="06:00 - 07:00"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:textSize="10sp"/>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginLeft="10dp"
-            >
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Av. Tales Moraes"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="06:00 - 07:00"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="15dp"
-            android:textSize="10sp"/>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="125dp"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Av. Kevin Silva"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/azul5">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06:00 - 07:00"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Av. Tales Moraes"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06:00 - 07:00"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Av. Kevin Silva"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
