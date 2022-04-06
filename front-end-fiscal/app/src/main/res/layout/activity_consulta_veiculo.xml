@@ -17,7 +17,7 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="80dp"
         />
 
@@ -36,7 +36,6 @@
         android:layout_height="wrap_content"
         android:text="VERIFICAR"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         app:cornerRadius="50dp"/>
 
     <TextView
@@ -45,7 +44,6 @@
         android:text="Situação do Veículo"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:textSize="25dp"
         android:textColor="@color/black"
         />
@@ -55,7 +53,7 @@
         android:layout_height="300dp"
         android:outlineAmbientShadowColor="@color/watergreen"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -152,16 +150,23 @@
         android:layout_height="wrap_content"
         android:text="REGISTRAR IRREGULARIDADE"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:cornerRadius="50dp"/>
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/bottom_navigation_menu"
-            android:layout_marginTop="50dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
