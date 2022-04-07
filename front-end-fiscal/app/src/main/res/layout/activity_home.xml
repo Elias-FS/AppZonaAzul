@@ -83,6 +83,7 @@
     <!--android:id="@+id/btnOpenRegistrarIrregularidade"-->
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAreaIrregular"
         android:layout_width="330dp"
         android:layout_height="130dp"
         android:text="Área Irregular"

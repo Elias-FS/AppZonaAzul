@@ -25,6 +25,11 @@ class HomeActivity : AppCompatActivity() {
             openWindowItinerario()
         }
 
+        binding.btnAreaIrregular.setOnClickListener {
+            //clicar para ir consultar o veiculo
+            abrirTelaRegistrarIrregularidade()
+        }
+
     }
     private fun abrirTelaConsultarVeiculo() {
         //navegar para a outra activity
@@ -37,6 +42,13 @@ class HomeActivity : AppCompatActivity() {
         //navegar para a outra activity
         val openItinerario = Intent(this, MapsActivity::class.java)
         startActivity(openItinerario)
+
+    }
+
+    private fun abrirTelaRegistrarIrregularidade() {
+        //navegar para a outra activity
+        val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
+        startActivity(intentRegistrarIrregularidade)
 
     }
 }

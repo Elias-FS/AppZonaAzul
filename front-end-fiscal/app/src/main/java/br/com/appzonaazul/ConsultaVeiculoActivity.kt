@@ -22,13 +22,14 @@ import retrofit2.Call
 import retrofit2.Response
 
 class ConsultaVeiculoActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityConsultaVeiculoBinding
-    private lateinit var tvHoraInicio:AppCompatTextView
-    private lateinit var btnVerificar:AppCompatButton
-    private lateinit var etPlaca:AppCompatEditText
-    private lateinit var tvHoraFim:AppCompatTextView
-    private lateinit var tvTempoDecorrido:AppCompatTextView
-    private lateinit var tvStatus:AppCompatTextView
+
+    private lateinit var binding: ActivityConsultaVeiculoBinding
+    private lateinit var tvHoraInicio: AppCompatTextView
+    private lateinit var btnVerificar: AppCompatButton
+    private lateinit var etPlaca: AppCompatEditText
+    private lateinit var tvHoraFim: AppCompatTextView
+    private lateinit var tvTempoDecorrido: AppCompatTextView
+    private lateinit var tvStatus: AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //inflar a activity
@@ -38,13 +39,16 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         binding.btnRegistrarIrregularidade.setOnClickListener {
             //clicar para ir consultar o veiculo
             abrirTelaRegistrarIrregularidade()
-
         }
+
+
         tvHoraFim = findViewById(R.id.tvHoraFim)
         btnVerificar = findViewById(R.id.btnVerificar)
+
         btnVerificar.setOnClickListener {
             etPlaca = findViewById(R.id.etPlaca)
             consultaVeiculo(etPlaca.text.toString())
+            hideMyKeyboard()
         }
 
 
@@ -53,8 +57,19 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         //navegar para a outra activity
         val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
         startActivity(intentRegistrarIrregularidade)
-
     }
+
+
+
+    private fun hideMyKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideMe.hideSoftInputFromWindow(view.windowToken, 0)
+        } else
+            window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
+
 
 
 
