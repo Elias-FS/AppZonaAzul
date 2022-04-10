@@ -1,6 +1,7 @@
 package br.com.appzonaazul
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -26,6 +27,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Navegação dos botões da barra de menu
+        binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.btnNavigationConsultar -> {
+                    // Respond to navigation item 1 click
+                    abrirTelaConsultarVeiculo()
+                    true
+                }
+                R.id.btnNavigationAreaIrregular -> {
+                    // Respond to navigation item 2 click
+                    abrirTelaRegistrarIrregularidade()
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -80,4 +98,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val adress: String,
         val rating: Float
         )
+
+    private fun abrirTelaRegistrarIrregularidade() {
+        //navegar para a outra activity
+        val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
+        startActivity(intentRegistrarIrregularidade)
+    }
+
+    private fun abrirTelaConsultarVeiculo() {
+        //navegar para a outra activity
+        val intentConsultaVeiculo = Intent(this, ConsultaVeiculoActivity::class.java)
+        startActivity(intentConsultaVeiculo)
+
+    }
+
 }

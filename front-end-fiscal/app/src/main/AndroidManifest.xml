@@ -78,7 +78,8 @@
             android:theme="@style/Theme.AppZonaAzul.NoActionBar" />
         <activity
             android:name=".CameraActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Imagens Irregularidade"/>
         <activity
             android:name=".ConsultaVeiculoActivity"
             android:exported="true"

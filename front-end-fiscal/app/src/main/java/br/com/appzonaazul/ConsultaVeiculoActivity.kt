@@ -42,6 +42,23 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         }
 
 
+        // Navegação dos botões da barra de menu
+        binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.btnNavigationItinerario -> {
+                    // Respond to navigation item 1 click
+                    openWindowItinerario()
+                    true
+                }
+                R.id.btnNavigationAreaIrregular -> {
+                    // Respond to navigation item 2 click
+                    abrirTelaRegistrarIrregularidade()
+                    true
+                }
+                else -> false
+            }
+        }
+
         tvHoraFim = findViewById(R.id.tvHoraFim)
         btnVerificar = findViewById(R.id.btnVerificar)
 
@@ -50,14 +67,22 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
             consultaVeiculo(etPlaca.text.toString())
             hideMyKeyboard()
         }
-
-
     }
+
+
+
+
     private fun abrirTelaRegistrarIrregularidade() {
         //navegar para a outra activity
         val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
         startActivity(intentRegistrarIrregularidade)
     }
+    private fun openWindowItinerario() {
+        //navegar para a outra activity
+        val openItinerario = Intent(this, MapsActivity::class.java)
+        startActivity(openItinerario)
+    }
+
 
 
 

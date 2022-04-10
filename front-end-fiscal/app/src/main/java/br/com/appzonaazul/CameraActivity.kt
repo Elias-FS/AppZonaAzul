@@ -17,6 +17,24 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Navegação dos botões da barra de menu
+        binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.btnNavigationItinerario -> {
+                    // Respond to navigation item 1 click
+                    openWindowItinerario()
+                    true
+                }
+                R.id.btnNavigationConsultar -> {
+                    // Respond to navigation item 2 click
+                    abrirTelaConsultarVeiculo()
+                    true
+                }
+                else -> false
+            }
+        }
+
+
         binding.btnOpenCamera.setOnClickListener {
             //solicitar permissão da CAMERA
             cameraProviderResult.launch(android.Manifest.permission.CAMERA)
@@ -37,6 +55,18 @@ class CameraActivity : AppCompatActivity() {
             //navegar para a outra activity
             val intentCameraPreview = Intent(this, CameraPreviewActivity::class.java)
             startActivity(intentCameraPreview)
+    }
+
+    private fun abrirTelaConsultarVeiculo() {
+        //navegar para a outra activity
+        val intentConsultaVeiculo = Intent(this, ConsultaVeiculoActivity::class.java)
+        startActivity(intentConsultaVeiculo)
+
+    }
+    private fun openWindowItinerario() {
+        //navegar para a outra activity
+        val openItinerario = Intent(this, MapsActivity::class.java)
+        startActivity(openItinerario)
     }
 
 

@@ -42,14 +42,12 @@ class HomeActivity : AppCompatActivity() {
         //navegar para a outra activity
         val openItinerario = Intent(this, MapsActivity::class.java)
         startActivity(openItinerario)
-
     }
 
     private fun abrirTelaRegistrarIrregularidade() {
         //navegar para a outra activity
         val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
         startActivity(intentRegistrarIrregularidade)
-
     }
 }
 
