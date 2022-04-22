@@ -34,7 +34,7 @@
         <entry key="app/src/main/res/layout/activity_itinerario.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/custom_marker_info.xml" value="0.2983612060546875" />
-        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
