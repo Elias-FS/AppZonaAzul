@@ -7,13 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
     android:orientation="vertical"
-    android:background="@color/azul6">
+    android:background="@color/white">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:src="@drawable/splash_icon"
+        android:layout_gravity="center"/>
+
+    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/splash_icon"
-        android:layout_gravity="center"
-        android:id="@+id/iv_logo"/>
+        android:layout_gravity="center" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
