@@ -1,6 +1,5 @@
 interface Tickets {
-    horaInicio: String,
-    horaFim: String,
+    horaInicio: Date,
+    horaFim: Date,
     placaVeiculo: String,
-
 }
