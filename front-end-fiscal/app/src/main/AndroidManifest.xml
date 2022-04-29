@@ -3,10 +3,10 @@
     package="br.com.appzonaazul">
 
     <uses-feature android:name="android.hardware.camera.any" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppZonaAzul"
         android:usesCleartextTraffic="true">
+
+        <provider
+            android:authorities="br.com.appzonaazul.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider"/>
+        </provider>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -52,30 +63,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ItinerarioActivity"
-            android:exported="true"
-            android:label="Itinerário">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ImagensIrregularidadeActivity"
-            android:exported="true"
-            android:label="Imagens Irregularidade">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".CameraPreviewActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppZonaAzul.NoActionBar" />
         <activity
             android:name=".CameraActivity"
             android:exported="false" />

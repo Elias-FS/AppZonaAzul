@@ -1,21 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/wall"
-    android:gravity="center"
     tools:context=".CameraActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnOpenCamera"
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="Abrir Câmera"
-        app:cornerRadius="50dp"/>
+        android:text="Tire foto dos 4 lados do carro"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="410dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFoto"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:src="@mipmap/ic_launcher"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbLatEsq"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Lat Esq"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbLatDir"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Lat Dir"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbFrente"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Frente"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbTraseira"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Traseira"/>
+
+        </RadioGroup>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data e Hora:"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvData"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="00:00"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTirarFoto"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:text="Tirar Foto"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnviarFoto"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Enviar"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
