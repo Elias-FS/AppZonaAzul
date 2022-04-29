@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
+    id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -53,6 +55,16 @@ android {
 
 dependencies {
 
+
+    // Dependencias Firebase (coloque todas estas)
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.1.0'
+    implementation 'com.google.firebase:firebase-functions-ktx:20.0.2'
+
+    //Gson - Lib Google JSON que vamos utilizar.
+    implementation 'com.google.code.gson:gson:2.8.9'
 
     //  Retrofit
     implementation 'com.google.code.gson:gson:2.8.7'

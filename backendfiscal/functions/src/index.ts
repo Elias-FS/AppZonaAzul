@@ -67,6 +67,8 @@ function getErrorMessage(code: number): string {
 }
 
 
+
+
 export const addNewIrregularidade = functions
   .region("southamerica-east1")
   .https.onCall(async (data, context) => {
@@ -85,7 +87,7 @@ export const addNewIrregularidade = functions
     if (errorCode > 0) {
       // gravar o erro no log e preparar o retorno.
       functions.logger.error("addNewIrregularidade " +
-        "- Erro ao inserir novo produto:" +
+        "- Erro ao inserir nova irregularidade:" +
         errorCode.toString()),
 
         result = {
@@ -114,15 +116,22 @@ export const addNewIrregularidade = functions
 export const findByPlate = functions
   .region("southamerica-east1")
   .https.onCall(async (data, context) => {
+    let result: CallableResponse
 
     //Array de tickets
-    const ticket: Array<Tickets> = [];
+   // const ticket: Array<Tickets> = [];
 
     const snapshot = await colTicket.get()
 
     const p = {
       placaVeiculo: data.placaVeiculo
     }
+
+    result = {
+      status: "ERROR",
+      message: "Não foi encontrado",
+      payload: JSON.parse(JSON.stringify({ placa: null })),
+    };
 
     snapshot.forEach((doc) => {
       const d = doc.data()
@@ -133,11 +142,18 @@ export const findByPlate = functions
       }
 
       if (p.placaVeiculo === plateTicket.placaVeiculo) {
-        ticket.push(plateTicket)
-        functions.logger.log("Deu certo nego ney!");
+        result = {
+          status: "SUCCESS",
+          message: "Placa encontrada",
+          payload: JSON.parse(JSON.stringify({
+            placa: plateTicket.placaVeiculo,
+            horaEntrada: plateTicket.horaInicio,
+            horaSaida: plateTicket.horaFim
+          })),
+        };
       }
     })
-    return ticket
+    return result;
   });
 
 //Pegar todos os tickets
@@ -186,7 +202,7 @@ function getErrorMessageTicket(code: number): string {
   let message = "";
   switch (code) {
     case 1: {
-      message = "Ticket não foi inserida";
+      message = "Ticket não foi inserido";
       break;
     }
   }
@@ -207,7 +223,7 @@ export const addNewTicket = functions
     // com o uso do logger, podemos monitorar os erros e o que há.
     functions.logger.info("addNewTicket - Iniciada.");
     // criando o objeto que representa a irregularidade (baseado nos parametros)
-    const i:Tickets = {
+    const i: Tickets = {
       horaInicio: hour.toDate(),
       horaFim: hour.toDate(),
       placaVeiculo: data.placaVeiculo,
@@ -218,7 +234,7 @@ export const addNewTicket = functions
     const errorCode = analyzeTicket(i);
     const errorMessage = getErrorMessageTicket(errorCode);
     if (errorCode > 0) {
-      // gravar o erro no log e preparar o retorno.
+      // gravar oerro no log e preparar o retorno.
       functions.logger.error("addNewTicket " +
         "- Erro ao inserir novo ticket:" +
         errorCode.toString()),
