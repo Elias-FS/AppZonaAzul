@@ -125,7 +125,6 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                                 it.tempoDecorrido().subSequence(6,8).toString().toInt()>0)
                                     tvStatus.text = "Irregular"
 
-
                     }
                 }
 

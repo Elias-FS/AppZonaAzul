@@ -1,153 +1,244 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
-
-
 const app = admin.initializeApp();
 const db = app.firestore();
-const colPagamentos = db.collection("Pagamento");
 const colTicket = db.collection("Ticket")
-const colIrregularidades = db.collection("Irregularidade");
-
-
-//interface callableResponse{
-//  status:string,
-//  message: string,
-//  JSON: payload
-//}
-
-//interface Product{
-//  name: string,
-//  price: number
-//}
+const collIrregularidades = db.collection("Irregularidade");
 
 
 
-/*
- * Função que analisa se um produto é válido para ser gravado no banco.
- * Exemplo de validação na entrada. Complemente com as regras que achar
- * importante.
- * @param {Product} p - Objeto produto a ser validado.
- * @return {number} - Retorna 0 se válido ou o código de erro.
- 
- function analyzeProduct(p: Product) : number {
-  if (!p.name) {
+
+/*function placa_aleatória(): String {
+  return (
+    +
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
+    '-' +
+    Math.floor(Math.random() * 9999))
+
+}*/
+
+
+
+interface CallableResponse {
+  status: string,
+  message: string,
+  payload: JSON
+}
+
+/**
+* Função que analisa se um produto é válido para ser gravado no banco.
+* Exemplo de validação na entrada. Complemente com as regras que achar
+* importante.
+* @param {Irregularidade} p - Objeto produto a ser validado.
+* @return {number} - Retorna 0 se válido ou o código de erro.
+**/
+function analyzeIrregularidade(p: Irregularidade): number {
+  if (!p.photo) {
     return 1;
   }
-  if (p.price <= 0) {
+  if (!p.status) {
     return 2;
   }
   return 0;
 }
 
- * Função que dado o código de erro obtido na analyzeProduct,
+/**
+ * Função que dado o código de erro obtido na analyzeIrregularidade,
  * devolve uma mensagem
  * @param {number} code - Código do erro
  * @return {string} - String com a mensagem de erro.
-
-function getErrorMessage(code: number) : string {
+ */
+function getErrorMessage(code: number): string {
   let message = "";
   switch (code) {
     case 1: {
-      message = "Nome do produto não informado.";
+      message = "Foto não foi inserida";
       break;
     }
     case 2: {
-      message = "Valor do produto deve ser superior a zero.";
+      message = "Seleciona o status da irregularidade";
       break;
     }
   }
   return message;
 }
-*/
 
 
-function placa_aleatória():String {
-  return (
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)] +
-  '-' +
-  Math.floor(Math.random()*9999))
+export const addNewIrregularidade = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    let result: CallableResponse;
 
+    // com o uso do logger, podemos monitorar os erros e o que há.
+    functions.logger.info("addNewIrregularidade - Iniciada.");
+    // criando o objeto que representa a irregularidade (baseado nos parametros)
+    const i = {
+      photo: data.photo,
+      status: data.status,
+    };
+    // inclua aqui a validacao.
+    const errorCode = analyzeIrregularidade(i);
+    const errorMessage = getErrorMessage(errorCode);
+    if (errorCode > 0) {
+      // gravar o erro no log e preparar o retorno.
+      functions.logger.error("addNewIrregularidade " +
+        "- Erro ao inserir novo produto:" +
+        errorCode.toString()),
+
+        result = {
+          status: "ERROR",
+          message: errorMessage,
+          payload: JSON.parse(JSON.stringify({ docId: null })),
+        };
+      console.log(result);
+    } else {
+      // cadastrar a irregularidade pois está ok.
+      const docRef = await collIrregularidades.add(i);
+      result = {
+        status: "SUCCESS",
+        message: "Irregularidade inserido com sucesso.",
+        payload: JSON.parse(JSON.stringify({ docId: docRef.id.toString() })),
+      };
+      functions.logger.error("addNewIrregularidade - Nova irregularidade inserida");
+    }
+
+    // Retornando o objeto result.
+    return result;
+  });
+
+
+//Pegar ticket pela placa
+export const findByPlate = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+
+    //Array de tickets
+    const ticket: Array<Tickets> = [];
+
+    const snapshot = await colTicket.get()
+
+    const p = {
+      placaVeiculo: data.placaVeiculo
+    }
+
+    snapshot.forEach((doc) => {
+      const d = doc.data()
+      let plateTicket: Tickets = {
+        placaVeiculo: d.placaVeiculo,
+        horaInicio: d.horaInicio,
+        horaFim: d.horaFim
+      }
+
+      if (p.placaVeiculo === plateTicket.placaVeiculo) {
+        ticket.push(plateTicket)
+        functions.logger.log("Deu certo nego ney!");
+      }
+    })
+    return ticket
+  });
+
+//Pegar todos os tickets
+export const getAllTickets = functions
+  .region("southamerica-east1")
+  .https.onCall(async () => {
+    // retorna todos os tickets
+    const ticket: Array<Tickets> = [];
+    const snapshot = await colTicket.get();
+
+    let tempTicket: Tickets;
+    snapshot.forEach((doc) => {
+      const d = doc.data();
+      tempTicket = {
+        horaInicio: d.horaInicio,
+        horaFim: d.horaFim,
+        placaVeiculo: d.placaVeiculo
+      };
+      ticket.push(tempTicket);
+    });
+    return ticket;
+  });
+
+
+/**
+* Função que analisa se um produto é válido para ser gravado no banco.
+* Exemplo de validação na entrada. Complemente com as regras que achar
+* importante.
+* @param {Tickets} p - Objeto produto a ser validado.
+* @return {number} - Retorna 0 se válido ou o código de erro.
+**/
+function analyzeTicket(p: Tickets): number {
+  if (!p.placaVeiculo) {
+    return 1;
+  }
+  return 0;
 }
 
+/**
+ * Função que dado o código de erro obtido na analyzeIrregularidade,
+ * devolve uma mensagem
+ * @param {number} code - Código do erro
+ * @return {string} - String com a mensagem de erro.
+ */
+function getErrorMessageTicket(code: number): string {
+  let message = "";
+  switch (code) {
+    case 1: {
+      message = "Ticket não foi inserida";
+      break;
+    }
+  }
+  return message;
+}
 
-//Adicionar irregularidade
-export const addIrregularidades = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const cliente = {
-        imagens: "imagens.png",
+//Adicionar ticket
+export const addNewTicket = functions
+  .region("southamerica-east1")
+  .https.onCall(async (data, context) => {
+    let result: CallableResponse;
+
+    //Calcular hora da estadia
+    const hour: FirebaseFirestore.Timestamp =
+      admin.firestore.Timestamp.now();
+    const saida: number = hour.toDate().getHours() + data.estadia;
+
+    // com o uso do logger, podemos monitorar os erros e o que há.
+    functions.logger.info("addNewTicket - Iniciada.");
+    // criando o objeto que representa a irregularidade (baseado nos parametros)
+    const i:Tickets = {
+      horaInicio: hour.toDate(),
+      horaFim: hour.toDate(),
+      placaVeiculo: data.placaVeiculo,
+    };
+    i.horaFim.setHours(saida);
+
+    // inclua aqui a validacao.
+    const errorCode = analyzeTicket(i);
+    const errorMessage = getErrorMessageTicket(errorCode);
+    if (errorCode > 0) {
+      // gravar o erro no log e preparar o retorno.
+      functions.logger.error("addNewTicket " +
+        "- Erro ao inserir novo ticket:" +
+        errorCode.toString()),
+
+        result = {
+          status: "ERROR",
+          message: errorMessage,
+          payload: JSON.parse(JSON.stringify({ docId: null })),
+        };
+      console.log(result);
+    } else {
+      // cadastrar a ticket pois está ok.
+      const docRef = await colTicket.add(i);
+      result = {
+        status: "SUCCESS",
+        message: "Ticket inserido com sucesso.",
+        payload: JSON.parse(JSON.stringify({ docId: docRef.id.toString() })),
       };
-      try {
-        const docRef = colIrregularidades.add(cliente);
-        response.send("Cliente inserido com sucesso: " + (await docRef).id);
-      } catch (e) {
-        functions.logger.error("Erro ao inserir o pneu de exemplo.");
-        response.send("Erro ao inserir o cliente de exemplo");
-      }
-    });
-
-// Adicionar pagamentos
-export const addPagamentos = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const pagamentos = {
-        placa_veiculo: "ABC-1234",
-        cpf: "333.222.333-49",
-        cnpj: "22222/333-4",
-      };
-      try {
-        const docRef = colPagamentos.add(pagamentos);
-        response.send("Cliente inserido com sucesso: " + (await docRef).id);
-      } catch (e) {
-        functions.logger.error("Erro ao inserir o pneu de exemplo.");
-        response.send("Erro ao inserir o cliente de exemplo");
-      }
-    });
-
-// Pegar todos os pagamentos
-export const getAll = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const tires : FirebaseFirestore.DocumentData = [];
-      const snapshot = await colPagamentos.get();
-      snapshot.forEach((doc) => {
-        tires.push(doc.data());
-      });
-      response.status(200).json(tires);
-    });
-
-export const getTickets = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const tickets : FirebaseFirestore.DocumentData = [];
-      const snapshot = await colTicket.get();
-      snapshot.forEach((doc) => {
-        
-        tickets.push(doc.data());
-      });
-      response.status(200).json(tickets);
-    });
-
-
-// Insert Ticket
-
-export const addTicket = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const ticket = {
-        placaVeiculo: placa_aleatória(),         // horário de brasília
-        horaInicio: new Date(new Date().getTime() - 3600000 * 3).toUTCString().slice(17,26),
-                                                // tempo limite: 1 hora
-        horaFim: new Date(new Date().getTime() + 3600000).toUTCString().slice(17,26),
-      };
-      try {
-        const docRef = colTicket.add(ticket);
-        response.send([ticket,await docRef]);        
-      } catch (e) {
-        functions.logger.error("Erro na função addTicket");
-        response.send("Erro na função addTicket");
-      }
-    });
+      functions.logger.error("addNewTicket - Nova Ticket inserida");
+    }
+    // Retornando o objeto result.
+    return result;
+  });
