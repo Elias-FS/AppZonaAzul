@@ -51,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:layout_marginTop="40dp">
 
         <com.google.android.material.button.MaterialButton
@@ -59,7 +60,6 @@
             android:layout_height="200dp"
             android:text="CONSULTAR\nVEÍCULO"
             android:layout_gravity="left"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="80dp"
             android:drawableTop="@drawable/outline_directions_car_white_36dp"
             android:paddingTop="20dp"
