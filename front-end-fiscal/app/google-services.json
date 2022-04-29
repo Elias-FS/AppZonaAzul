@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "799750998284",
+    "project_id": "backendfiscal",
+    "storage_bucket": "backendfiscal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799750998284:android:689421f1c055c6a9346129",
+        "android_client_info": {
+          "package_name": "br.com.appzonaazul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799750998284-3hjdvetiprnassvsset9rf3ap87sql6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJCkEt-qK2Js19adQxK62IZVOtF1E8zU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799750998284-3hjdvetiprnassvsset9rf3ap87sql6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
