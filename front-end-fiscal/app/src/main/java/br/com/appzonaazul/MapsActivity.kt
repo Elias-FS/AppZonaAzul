@@ -21,7 +21,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
     private  val places = arrayListOf (
         Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
-    )
+        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
+        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
+        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
+
+        )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

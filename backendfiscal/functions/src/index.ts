@@ -9,16 +9,7 @@ const collIrregularidades = db.collection("Irregularidade");
 
 
 
-/*function placa_aleatória(): String {
-  return (
-    +
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)] +
-    '-' +
-    Math.floor(Math.random() * 9999))
 
-}*/
 
 
 
@@ -258,3 +249,15 @@ export const addNewTicket = functions
     // Retornando o objeto result.
     return result;
   });
+
+  export const getTickets = functions
+    .region("southamerica-east1")
+    .https.onRequest(async (request, response) => {
+      const tickets : FirebaseFirestore.DocumentData = [];
+      const snapshot = await colTicket.get();
+      snapshot.forEach((doc) => {
+        
+        tickets.push(doc.data());
+      });
+      response.status(200).json(tickets);
+    });
