@@ -1,11 +1,13 @@
 package br.com.appzonaazul
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
@@ -23,6 +25,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class CameraPreviewActivity : AppCompatActivity() {
+
+    lateinit var iv_img5 : ImageView
+
 
     private lateinit var binding: ActivityCameraPreviewBinding
 
@@ -45,6 +50,9 @@ class CameraPreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        iv_img5 = findViewById(R.id.iv_img5)
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -86,7 +94,7 @@ class CameraPreviewActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun takePhoto(){
+    fun takePhoto(){
         // codigo para "tirar a foto"
         imageCapture?.let {
 
@@ -94,7 +102,13 @@ class CameraPreviewActivity : AppCompatActivity() {
             val fileName = "FOTO_JPEG_${System.currentTimeMillis()}"
             val file = File(externalMediaDirs[0], fileName)
 
+
+
+
             val outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
+
+
+
 
             it.takePicture(
                 outputFileOptions,

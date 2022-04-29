@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Placa do Veículo"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="80dp"
@@ -27,7 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Insira a placa do veículo"
-        android:textColor="@color/gray"
+        android:backgroundTint="@color/black"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:layout_gravity="center_horizontal"/>
 
     <com.google.android.material.button.MaterialButton
@@ -50,7 +52,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="285dp"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:outlineAmbientShadowColor="@color/watergreen"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
@@ -68,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hora de chegada:"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"/>
 
@@ -77,8 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
@@ -86,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hora limite:"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"/>
@@ -95,8 +97,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
@@ -105,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tempo decorrido:"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"/>
@@ -114,8 +116,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
@@ -124,8 +126,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="STATUS:"
-                android:textSize="15sp"
-                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"/>
@@ -135,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="REGULAR"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"/>
@@ -162,6 +164,10 @@
             android:id="@+id/btnNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/azul1"
+            app:itemTextColor="@color/white"
+            app:itemRippleColor="@color/white"
+            app:itemIconTint="@color/white"
             app:menu="@menu/bottom_navigation_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
