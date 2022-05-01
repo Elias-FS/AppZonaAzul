@@ -9,86 +9,140 @@
     android:background="@drawable/wall"
     tools:context=".CameraActivity">
 
+
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tire foto dos 4 lados do carro"
         android:layout_gravity="center_horizontal"
         android:textSize="25dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="410dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivFoto"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:src="@mipmap/ic_launcher"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbLatEsq"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Lat Esq"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Foto Frontal"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="15dp"/>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:outlineAmbientShadowColor="@color/watergreen"
+                    android:id="@+id/ivFoto"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp">
+
+                </androidx.appcompat.widget.AppCompatImageButton>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbLatDir"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Lat Dir"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Foto Lateral Esquerda"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="15dp"/>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:outlineAmbientShadowColor="@color/watergreen"
+                    android:id="@+id/ivFoto2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp">
+                </androidx.appcompat.widget.AppCompatImageButton>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbFrente"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Frente"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Foto Traseira"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="15dp"/>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:outlineAmbientShadowColor="@color/watergreen"
+                    android:id="@+id/ivFoto3"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp">
+                </androidx.appcompat.widget.AppCompatImageButton>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbTraseira"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Traseira"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Foto Lateral Direita"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="15dp"/>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:outlineAmbientShadowColor="@color/watergreen"
+                    android:id="@+id/ivFoto4"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp">
+                </androidx.appcompat.widget.AppCompatImageButton>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </LinearLayout>
 
-        </RadioGroup>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
+    </HorizontalScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Clique nos espaços a cima para tirar as fotos"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15dp"/>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -96,7 +150,7 @@
             android:text="Data e Hora:"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -106,7 +160,7 @@
             android:layout_marginLeft="5dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:text="00:00"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -115,17 +169,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTirarFoto"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:text="Tirar Foto"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEnviarFoto"
@@ -133,11 +179,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:text="Enviar"/>
+            android:backgroundTint="@color/azul3"
+            android:text="Enviar Fotos"/>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
