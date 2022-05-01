@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -13,6 +14,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.*
 import androidx.core.content.FileProvider
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.time.LocalDateTime
 
@@ -22,7 +26,6 @@ private const val REQUEST_CODE = 42
 class CameraActivity : AppCompatActivity() {
 
     private var FILE_NAME = "photo.jpg"
-    private var paths: MutableList<String> = mutableListOf("","","","")
     private lateinit var tvData: AppCompatTextView
     private lateinit var btnEnviarFoto : AppCompatButton
     private lateinit var ivFoto : AppCompatImageButton
@@ -30,9 +33,9 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var ivFoto3 : AppCompatImageButton
     private lateinit var ivFoto4 : AppCompatImageButton
     private lateinit var photoFile: File
-
-
-
+    private var paths: MutableList<String> = mutableListOf("","","","")
+    private lateinit var photo: File
+    val storage = Firebase.storage("gs://backendfiscal")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,13 +69,22 @@ class CameraActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 pegarData()
-            } else{
-
+            } else {
+                // Create a storage reference from our app
+                val storageRef = storage.reference
+                for (i in paths) {
+                    var file = Uri.fromFile(File("${i}"))
+                    val photoRef = storageRef.child("br.com.appzonaazul/${file.lastPathSegment}")
+                    photoRef.putFile(file)
             }
+
+                Snackbar.make(btnEnviarFoto, "Imagem registrada com sucesso", Snackbar.LENGTH_LONG).show()
+                val intent = Intent(this, CameraActivity::class.java)
+                startActivity(intent)
         }
 
-
-    }
+        }
+   }
 
     private fun pegarFoto(REQUEST_CODE: Int){
         val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
