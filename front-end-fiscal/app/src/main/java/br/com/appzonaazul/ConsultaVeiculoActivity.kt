@@ -35,11 +35,6 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         binding = ActivityConsultaVeiculoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnRegistrarIrregularidade.setOnClickListener {
-            //clicar para ir consultar o veiculo
-            abrirTelaRegistrarIrregularidade()
-
-        }
         tvHoraFim = findViewById(R.id.tvHoraFim)
         btnVerificar = findViewById(R.id.btnVerificar)
 
@@ -48,6 +43,13 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
             hideMyKeyboard()
             consultaVeiculo(etPlaca.text.toString())
         }
+
+        binding.btnRegistrarIrregularidade.visibility = View.INVISIBLE
+        binding.btnRegistrarIrregularidade.setOnClickListener {
+            //clicar para ir consultar o veiculo
+            abrirTelaRegistrarIrregularidade()
+        }
+
 
         // Navegação dos botões da barra de menu
         binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
@@ -103,12 +105,9 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                             if(it.tempoDecorrido().subSequence(3,5).toString().toInt()>0||
                                 it.tempoDecorrido().subSequence(6,8).toString().toInt()>0)
                                 tvStatus.text = "Irregular"
-
-
+                                binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
                     }
                 }
-
-
             }
 
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
