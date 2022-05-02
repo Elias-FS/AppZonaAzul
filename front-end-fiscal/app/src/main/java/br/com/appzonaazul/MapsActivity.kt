@@ -13,12 +13,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import br.com.appzonaazul.databinding.ActivityMapsBinding
 import br.com.appzonaazul.util.RetrofitClient
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.google.firebase.firestore.GeoPoint
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -102,6 +99,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addMarkers(googleMap: GoogleMap) {
         val local1 = LatLng(places[0].LatLng[0].toString().toDouble(),places[0].LatLng[1].toString().toDouble())
         val local2 = LatLng(places[1].LatLng[0].toString().toDouble(),places[1].LatLng[1].toString().toDouble())
+        val local3 = LatLng(places[2].LatLng[0].toString().toDouble(),places[2].LatLng[1].toString().toDouble())
+        val local4 = LatLng(places[3].LatLng[0].toString().toDouble(),places[3].LatLng[1].toString().toDouble())
 
         places.forEach { place ->
                 val marker =   googleMap.addMarker (
@@ -120,20 +119,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
             }
-        googleMap.addPolyline(PolylineOptions().add(local1,local2).width(35f).color(Color.BLUE))
 
+        googleMap.addPolyline(PolylineOptions().add(local1,local3).width(30f).color(Color.BLUE))
+        googleMap.addPolyline(PolylineOptions().add(local1,local4).width(30f).color(Color.RED))
+        googleMap.addPolyline(PolylineOptions().add(local2,local3).width(30f).color(Color.YELLOW))
+        googleMap.addPolyline(PolylineOptions().add(local4,local2).width(30f).color(Color.GREEN))
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
-
 
     }
 
