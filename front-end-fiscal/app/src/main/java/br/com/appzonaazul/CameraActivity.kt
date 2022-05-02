@@ -14,6 +14,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.*
 import androidx.core.content.FileProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -32,6 +33,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var ivFoto2 : AppCompatImageButton
     private lateinit var ivFoto3 : AppCompatImageButton
     private lateinit var ivFoto4 : AppCompatImageButton
+    private lateinit var btnNavigation: BottomNavigationView
     private lateinit var photoFile: File
     private var paths: MutableList<String> = mutableListOf("","","","")
     private lateinit var photo: File
@@ -48,6 +50,7 @@ class CameraActivity : AppCompatActivity() {
         ivFoto3 = findViewById(R.id.ivFoto3)
         ivFoto4 = findViewById(R.id.ivFoto4)
         btnEnviarFoto = findViewById(R.id.btnEnviarFoto)
+        btnNavigation = findViewById(R.id.btnNavigation)
 
         ivFoto.setOnClickListener(){
             pegarFoto(1)
@@ -83,6 +86,22 @@ class CameraActivity : AppCompatActivity() {
                 startActivity(intent)
         }
 
+        }
+        // Navegação dos botões da barra de menu
+        btnNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.btnNavigationConsultar -> {
+                    // Respond to navigation item 1 click
+                    abrirTelaConsultarVeiculo()
+                    true
+                }
+                R.id.btnNavigationItinerario -> {
+                    // Respond to navigation item 2 click
+                    openWindowItinerario()
+                    true
+                }
+                else -> false
+            }
         }
    }
 
@@ -143,6 +162,19 @@ class CameraActivity : AppCompatActivity() {
     private fun pegarData(){
         val data = LocalDateTime.now()
         tvData.text = data.toString()
+    }
+
+    private fun openWindowItinerario() {
+        //navegar para a outra activity
+        val openItinerario = Intent(this, MapsActivity::class.java)
+        startActivity(openItinerario)
+    }
+
+    private fun abrirTelaConsultarVeiculo() {
+        //navegar para a outra activity
+        val intentConsultaVeiculo = Intent(this, ConsultaVeiculoActivity::class.java)
+        startActivity(intentConsultaVeiculo)
+
     }
 
 
