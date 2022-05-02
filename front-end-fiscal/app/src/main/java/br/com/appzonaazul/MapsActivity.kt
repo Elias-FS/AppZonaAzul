@@ -95,7 +95,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return zonaazul
 
     }
+    private fun getNearestMarker(zonaAzul:ZonaAzul) {
+       // var distance: Double = places[0].LatLng[0]
+        places.forEach {
 
+        }
+    }
     private fun addMarkers(googleMap: GoogleMap) {
             places.forEach { place ->
                 val marker =   googleMap.addMarker (
