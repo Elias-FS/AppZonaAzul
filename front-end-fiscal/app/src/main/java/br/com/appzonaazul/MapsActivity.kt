@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import br.com.appzonaazul.api.FireStore
+import br.com.appzonaazul.classes.Ticket
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,22 +15,23 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import br.com.appzonaazul.databinding.ActivityMapsBinding
+import br.com.appzonaazul.util.RetrofitClient
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.firebase.firestore.GeoPoint
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import retrofit2.Call
+import retrofit2.Response
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    private  val places = arrayListOf (
-        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
-        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
-        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
-        Place("PUC", LatLng(-23.5868031, -46.684306), "Av. Reitor Benedito José Barreto Fonseca, H15 - Parque dos Jacarandás, Campinas - SP", 4.8f),
-
-        )
+    private val places: MutableList<ZonaAzul> = getZonaAzul()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        println(places)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -58,22 +61,50 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 googleMap.setOnMapLoadedCallback {
                  val bounds = LatLngBounds.builder()
                  places.forEach {
-                     bounds.include(it.latLng
-                     )
+                     bounds.include(LatLng(
+                         it.LatLng[0].toString().toDouble(),
+                         it.LatLng[1].toString().toDouble()))
                  }
 
                  googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 100))
              }
         }
     }
+    private fun getZonaAzul():MutableList<ZonaAzul> {
+        println("$$$$$$$\\Zona Azul iniciada$$$$$$$")
+        val firebase = RetrofitClient.getRetrofitInstance().create(FireStore::class.java)
+        val zonaazul = mutableListOf<ZonaAzul>()
+        firebase.getZonaAzul().enqueue(object : retrofit2.Callback<JsonArray> {
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>){
+                val data = mutableListOf<JsonElement>()
+                response.body()?.iterator()?.forEach {
+                    data.add(it)
+                }
+                println(data.toString())
+                for(i in data){
+                    zonaazul.add(Gson().fromJson(i, ZonaAzul::class.java))
+                }
+                println(zonaazul)
+            }
+
+
+            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+                println("Error de conexão")
+            }
+        })
+        return zonaazul
+
+    }
 
     private fun addMarkers(googleMap: GoogleMap) {
             places.forEach { place ->
-                var marker =   googleMap.addMarker (
+                val marker =   googleMap.addMarker (
                 MarkerOptions()
-                    .title(place.name)
-                    .snippet(place.adress)
-                    .position(place.latLng)
+                    .title(place.title)
+                    .snippet(place.snippet)
+                    .position(LatLng(
+                        place.LatLng[0].toString().toDouble(),
+                        place.LatLng[1].toString().toDouble()))
                     .icon(
                         BitmapHelper.vectorToBitMap(this, R.drawable.outline_location_on_black_36dp, ContextCompat.getColor(this, R.color.teal_200))
                     )
@@ -96,11 +127,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    data class Place (
-        val name: String,
-        val latLng: LatLng,
-        val adress: String,
-        val rating: Float
+    data class ZonaAzul (
+        val LatLng:Array<Number>,
+        val title: String,
+        val snippet: String
         )
 
     private fun abrirTelaRegistrarIrregularidade() {

@@ -5,6 +5,7 @@ const app = admin.initializeApp();
 const db = app.firestore();
 const colTicket = db.collection("Ticket")
 const collIrregularidades = db.collection("Irregularidade");
+const colZonaAzul = db.collection("ZonaAzul");
 
 
 
@@ -103,14 +104,14 @@ export const addNewIrregularidade = functions
   });
 
 
-//Pegar ticket pela placa
+//Pegar itinerario pela placa
 export const findByPlate = functions
   .region("southamerica-east1")
   .https.onCall(async (data, context) => {
     let result: CallableResponse
 
     //Array de tickets
-   // const ticket: Array<Tickets> = [];
+   // const itinerario: Array<Tickets> = [];
 
     const snapshot = await colTicket.get()
 
@@ -152,20 +153,20 @@ export const getAllTickets = functions
   .region("southamerica-east1")
   .https.onCall(async () => {
     // retorna todos os tickets
-    const ticket: Array<Tickets> = [];
+    const itinerario: Array<Tickets> = [];
     const snapshot = await colTicket.get();
 
-    let tempTicket: Tickets;
+    let tempMarker: Tickets;
     snapshot.forEach((doc) => {
       const d = doc.data();
-      tempTicket = {
+      tempMarker = {
         horaInicio: d.horaInicio,
         horaFim: d.horaFim,
         placaVeiculo: d.placaVeiculo
       };
-      ticket.push(tempTicket);
+      itinerario.push(tempMarker);
     });
-    return ticket;
+    return itinerario;
   });
 
 
@@ -200,7 +201,7 @@ function getErrorMessageTicket(code: number): string {
   return message;
 }
 
-//Adicionar ticket
+//Adicionar itinerario
 export const addNewTicket = functions
   .region("southamerica-east1")
   .https.onCall(async (data, context) => {
@@ -227,7 +228,7 @@ export const addNewTicket = functions
     if (errorCode > 0) {
       // gravar oerro no log e preparar o retorno.
       functions.logger.error("addNewTicket " +
-        "- Erro ao inserir novo ticket:" +
+        "- Erro ao inserir novo itinerario:" +
         errorCode.toString()),
 
         result = {
@@ -237,7 +238,7 @@ export const addNewTicket = functions
         };
       console.log(result);
     } else {
-      // cadastrar a ticket pois está ok.
+      // cadastrar a itinerario pois está ok.
       const docRef = await colTicket.add(i);
       result = {
         status: "SUCCESS",
@@ -261,3 +262,17 @@ export const addNewTicket = functions
       });
       response.status(200).json(tickets);
     });
+
+
+export const getZonaAzul = functions
+    .region("southamerica-east1")
+    .https.onRequest(async (request, response) => {
+      const itinerario : FirebaseFirestore.DocumentData = [];
+      const snapshot = await colZonaAzul.get();
+      snapshot.forEach((doc) => {
+        
+        itinerario.push(doc.data());
+      });
+      response.status(200).json(itinerario);
+    });
+
