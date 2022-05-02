@@ -86,6 +86,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 for(i in data){
                     zonaazul.add(Gson().fromJson(i, ZonaAzul::class.java))
                 }
+
                 println(zonaazul)
             }
 
@@ -99,7 +100,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun addMarkers(googleMap: GoogleMap) {
-            places.forEach { place ->
+        val local1 = LatLng(places[0].LatLng[0].toString().toDouble(),places[0].LatLng[1].toString().toDouble())
+        val local2 = LatLng(places[1].LatLng[0].toString().toDouble(),places[1].LatLng[1].toString().toDouble())
+
+        places.forEach { place ->
                 val marker =   googleMap.addMarker (
                 MarkerOptions()
                     .title(place.title)
@@ -116,21 +120,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
             }
+        googleMap.addPolyline(PolylineOptions().add(local1,local2).width(35f).color(Color.BLUE))
+
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val local1 = LatLng(places[0].LatLng[0].toString().toDouble(),places[0].LatLng[1].toString().toDouble())
-        val local2 = LatLng(places[1].LatLng[0].toString().toDouble(),places[1].LatLng[1].toString().toDouble())
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
-        mMap.addPolyline(PolylineOptions().add(local1,local2
-        ).width(35f).color(Color.BLUE))
+
 
     }
 
