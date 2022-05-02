@@ -96,17 +96,28 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                 tvHoraFim = findViewById(R.id.tvHoraFim)
                 tvTempoDecorrido = findViewById(R.id.tvTempoDecorrido)
                 tvStatus = findViewById(R.id.tvStatus)
+
                 for (it in tickets){
-                    if (it.placaVeiculo==placa){
-                        tvHoraInicio.text = it.horaInicio
-                        tvHoraFim.text = it.horaFim
-                        tvTempoDecorrido.text = it.tempoDecorrido()
-                        if (it.tempoDecorrido().subSequence(0,2).toString().toInt() >= 1)
-                            if(it.tempoDecorrido().subSequence(3,5).toString().toInt()>0||
-                                it.tempoDecorrido().subSequence(6,8).toString().toInt()>0)
-                                tvStatus.text = "Irregular"
-                                binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
+                    if (it.placaVeiculo != placa) {
+                        Snackbar.make(tvStatus,"!!! Placa Digitada Não Consta no Sistema !!!",
+                            Snackbar.LENGTH_LONG).show()
+                    } else {
+                        if (it.placaVeiculo==placa){
+                            tvHoraInicio.text = it.horaInicio
+                            tvHoraFim.text = it.horaFim
+                            tvTempoDecorrido.text = it.tempoDecorrido()
+                            tvStatus.text = "Regular"
+                            binding.btnRegistrarIrregularidade.visibility = View.INVISIBLE
+                            if (it.tempoDecorrido().subSequence(0,2).toString().toInt() >= 1)
+                                if(it.tempoDecorrido().subSequence(3,5).toString().toInt()>0||
+                                    it.tempoDecorrido().subSequence(6,8).toString().toInt()>0) {
+                                    tvStatus.text = "Irregular"
+                                    binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
+                                }
+                        }
+
                     }
+
                 }
             }
 
