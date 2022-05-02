@@ -2,6 +2,7 @@ package br.com.appzonaazul
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import br.com.appzonaazul.databinding.ActivityMapsBinding
 import br.com.appzonaazul.util.RetrofitClient
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.firebase.firestore.GeoPoint
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -95,12 +97,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return zonaazul
 
     }
-    private fun getNearestMarker(zonaAzul:ZonaAzul) {
-       // var distance: Double = places[0].LatLng[0]
-        places.forEach {
 
-        }
-    }
     private fun addMarkers(googleMap: GoogleMap) {
             places.forEach { place ->
                 val marker =   googleMap.addMarker (
@@ -124,11 +121,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        val local1 = LatLng(places[0].LatLng[0].toString().toDouble(),places[0].LatLng[1].toString().toDouble())
+        val local2 = LatLng(places[1].LatLng[0].toString().toDouble(),places[1].LatLng[1].toString().toDouble())
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        mMap.addPolyline(PolylineOptions().add(local1,local2
+        ).width(35f).color(Color.BLUE))
 
     }
 
