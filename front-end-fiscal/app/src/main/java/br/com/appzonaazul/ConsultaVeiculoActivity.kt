@@ -35,17 +35,22 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         binding = ActivityConsultaVeiculoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        tvHoraFim = findViewById(R.id.tvHoraFim)
+        btnVerificar = findViewById(R.id.btnVerificar)
+
+        btnVerificar.setOnClickListener {
+            etPlaca = findViewById(R.id.etPlaca)
+            hideMyKeyboard()
+            consultaVeiculo(etPlaca.text.toString())
+        }
+
+        binding.btnRegistrarIrregularidade.visibility = View.INVISIBLE
         binding.btnRegistrarIrregularidade.setOnClickListener {
             //clicar para ir consultar o veiculo
             abrirTelaRegistrarIrregularidade()
+        }
 
-        }
-        tvHoraFim = findViewById(R.id.tvHoraFim)
-        btnVerificar = findViewById(R.id.btnVerificar)
-        btnVerificar.setOnClickListener {
-            etPlaca = findViewById(R.id.etPlaca)
-            consultaVeiculo(etPlaca.text.toString())
-        }
+
         // Navegação dos botões da barra de menu
         binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -100,12 +105,9 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                             if(it.tempoDecorrido().subSequence(3,5).toString().toInt()>0||
                                 it.tempoDecorrido().subSequence(6,8).toString().toInt()>0)
                                 tvStatus.text = "Irregular"
-
-
+                                binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
                     }
                 }
-
-
             }
 
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
@@ -114,6 +116,15 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         })
 
     }
+    private fun hideMyKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideMe.hideSoftInputFromWindow(view.windowToken, 0)
+        } else
+            window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
+
     private fun openWindowItinerario() {
         //navegar para a outra activity
         val openItinerario = Intent(this, MapsActivity::class.java)

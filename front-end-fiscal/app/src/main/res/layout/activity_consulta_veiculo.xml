@@ -52,10 +52,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="285dp"
-        android:layout_height="350dp"
+        android:layout_height="370dp"
         android:outlineAmbientShadowColor="@color/watergreen"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        app:cardCornerRadius="40dp"
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
