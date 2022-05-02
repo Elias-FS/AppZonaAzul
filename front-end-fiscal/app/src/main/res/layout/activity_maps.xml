@@ -13,68 +13,185 @@
 
 
 
+
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
+            android:onClick="expand"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/azul5">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            map:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="06:00 - 07:00"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:textSize="10sp"/>
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="170dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="10dp"
-                >
-                <TextView
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutItinerario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Av. Tales Moraes"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    />
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Itinerário"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:layout_gravity="center"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="06:00 - 07:00"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="15dp"
-                android:textSize="10sp"/>
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="170dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="125dp"
-                android:layout_marginLeft="10dp">
 
-                <TextView
+                    <TextView
+                        android:id="@+id/itinerario"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Horários de suas Rotas:"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="06:00 - 07:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="10sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Av. Tales Moraes"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="07:00 - 08:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="10sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Av. Kevin Silva"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Av. Kevin Silva"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    />
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp">
 
-            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
 
+
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08:00 - 09:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="10sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Av. Dr.Marcelo D."
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09:00 - 10:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="10sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Av. Elias Fausto"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/btnNavigation"

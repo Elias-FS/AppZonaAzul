@@ -1,9 +1,17 @@
 package br.com.appzonaazul
 
+import android.animation.LayoutTransition
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import br.com.appzonaazul.api.FireStore
 import br.com.appzonaazul.classes.Ticket
@@ -17,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import br.com.appzonaazul.databinding.ActivityMapsBinding
 import br.com.appzonaazul.util.RetrofitClient
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.material.card.MaterialCardView
 import com.google.firebase.firestore.GeoPoint
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -29,15 +38,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private val places: MutableList<ZonaAzul> = getZonaAzul()
+
+    private lateinit var layoutItinerario: LinearLayoutCompat
+    private lateinit var itinerario: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         println(places)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Expand Card
+        layoutItinerario = findViewById(R.id.layoutItinerario)
+        itinerario = findViewById(R.id.itinerario)
+        //layoutItinerario.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+
         // Navegação dos botões da barra de menu
         binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.btnNavigationConsultar -> {
                     // Respond to navigation item 1 click
                     abrirTelaConsultarVeiculo()
@@ -55,33 +73,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
-             mapFragment.getMapAsync { googleMap ->
-                googleMap.setInfoWindowAdapter(MarkerInfoAdapter(this))
-                addMarkers(googleMap)
-                googleMap.setOnMapLoadedCallback {
-                 val bounds = LatLngBounds.builder()
-                 places.forEach {
-                     bounds.include(LatLng(
-                         it.LatLng[0].toString().toDouble(),
-                         it.LatLng[1].toString().toDouble()))
-                 }
+        mapFragment.getMapAsync { googleMap ->
+            googleMap.setInfoWindowAdapter(MarkerInfoAdapter(this))
+            addMarkers(googleMap)
+            googleMap.setOnMapLoadedCallback {
+                val bounds = LatLngBounds.builder()
+                places.forEach {
+                    bounds.include(
+                        LatLng(
+                            it.LatLng[0].toString().toDouble(),
+                            it.LatLng[1].toString().toDouble()
+                        )
+                    )
+                }
 
-                 googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 100))
-             }
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 100))
+            }
         }
     }
-    private fun getZonaAzul():MutableList<ZonaAzul> {
+
+    private fun getZonaAzul(): MutableList<ZonaAzul> {
         println("$$$$$$$\\Zona Azul iniciada$$$$$$$")
         val firebase = RetrofitClient.getRetrofitInstance().create(FireStore::class.java)
         val zonaazul = mutableListOf<ZonaAzul>()
         firebase.getZonaAzul().enqueue(object : retrofit2.Callback<JsonArray> {
-            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>){
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 val data = mutableListOf<JsonElement>()
                 response.body()?.iterator()?.forEach {
                     data.add(it)
                 }
                 println(data.toString())
-                for(i in data){
+                for (i in data) {
                     zonaazul.add(Gson().fromJson(i, ZonaAzul::class.java))
                 }
                 println(zonaazul)
@@ -95,30 +117,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return zonaazul
 
     }
-    private fun getNearestMarker(zonaAzul:ZonaAzul) {
-       // var distance: Double = places[0].LatLng[0]
+
+    private fun getNearestMarker(zonaAzul: ZonaAzul) {
+        // var distance: Double = places[0].LatLng[0]
         places.forEach {
 
         }
     }
+
     private fun addMarkers(googleMap: GoogleMap) {
-            places.forEach { place ->
-                val marker =   googleMap.addMarker (
+        places.forEach { place ->
+            val marker = googleMap.addMarker(
                 MarkerOptions()
                     .title(place.title)
                     .snippet(place.snippet)
-                    .position(LatLng(
-                        place.LatLng[0].toString().toDouble(),
-                        place.LatLng[1].toString().toDouble()))
+                    .position(
+                        LatLng(
+                            place.LatLng[0].toString().toDouble(),
+                            place.LatLng[1].toString().toDouble()
+                        )
+                    )
                     .icon(
-                        BitmapHelper.vectorToBitMap(this, R.drawable.outline_location_on_black_36dp, ContextCompat.getColor(this, R.color.teal_200))
+                        BitmapHelper.vectorToBitMap(
+                            this,
+                            R.drawable.outline_location_on_black_36dp,
+                            ContextCompat.getColor(this, R.color.teal_200)
+                        )
                     )
             )
-                if (marker != null) {
-                    marker.tag = places
-                }
-
+            if (marker != null) {
+                marker.tag = places
             }
+
+        }
 
     }
 
@@ -132,11 +163,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    data class ZonaAzul (
-        val LatLng:Array<Number>,
+    data class ZonaAzul(
+        val LatLng: Array<Number>,
         val title: String,
         val snippet: String
-        )
+    )
 
     private fun abrirTelaRegistrarIrregularidade() {
         //navegar para a outra activity
@@ -150,5 +181,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         startActivity(intentConsultaVeiculo)
 
     }
+
+
+
+    fun expand(view: View) {
+        var v : Int = 0
+        if (itinerario.visibility == GONE) {
+            v = VISIBLE
+        } else {
+            v = GONE
+        }
+        TransitionManager.beginDelayedTransition(layoutItinerario, AutoTransition())
+        itinerario.visibility = v
+    }
+
 
 }
