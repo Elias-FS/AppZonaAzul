@@ -98,8 +98,8 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                 tvStatus = findViewById(R.id.tvStatus)
 
                 for (it in tickets){
-                    if (it.placaVeiculo != placa) {
-                        Snackbar.make(tvStatus,"!!! Placa Digitada Não Consta no Sistema !!!",
+                    if (!(placa in it.placaVeiculo)) {
+                        Snackbar.make(tvStatus,"!!!  Placa (${placa}) Não Consta no Sistema !!!",
                             Snackbar.LENGTH_LONG).show()
                     } else {
                         if (it.placaVeiculo==placa){
