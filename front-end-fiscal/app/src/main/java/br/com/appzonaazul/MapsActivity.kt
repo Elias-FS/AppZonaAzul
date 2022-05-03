@@ -1,6 +1,5 @@
 package br.com.appzonaazul
 
-import android.animation.LayoutTransition
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -59,7 +58,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Navegação dos botões da barra de menu
         binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
+            when(item.itemId) {
                 R.id.btnNavigationConsultar -> {
                     // Respond to navigation item 1 click
                     abrirTelaConsultarVeiculo()
@@ -84,12 +83,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             googleMap.setOnMapLoadedCallback {
                 val bounds = LatLngBounds.builder()
                 places.forEach {
-                    bounds.include(
-                        LatLng(
-                            it.LatLng[0].toString().toDouble(),
-                            it.LatLng[1].toString().toDouble()
-                        )
-                    )
+                    bounds.include(LatLng(
+                        it.LatLng[0].toString().toDouble(),
+                        it.LatLng[1].toString().toDouble()))
                 }
 
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 100))
@@ -141,13 +137,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val firebase = RetrofitClient.getRetrofitInstance().create(FireStore::class.java)
         val zonaazul = mutableListOf<ZonaAzul>()
         firebase.getZonaAzul().enqueue(object : retrofit2.Callback<JsonArray> {
-            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>){
                 val data = mutableListOf<JsonElement>()
                 response.body()?.iterator()?.forEach {
                     data.add(it)
                 }
                 println(data.toString())
-                for (i in data) {
+                for(i in data){
                     zonaazul.add(Gson().fromJson(i, ZonaAzul::class.java))
                 }
 
@@ -174,27 +170,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val local8 = LatLng(places[7].LatLng[0].toString().toDouble(),places[7].LatLng[1].toString().toDouble())
 
         places.forEach { place ->
-                val marker =   googleMap.addMarker (
+            val marker =   googleMap.addMarker (
                 MarkerOptions()
                     .title(place.title)
                     .snippet(place.snippet)
-                    .position(
-                        LatLng(
-                            place.LatLng[0].toString().toDouble(),
-                            place.LatLng[1].toString().toDouble()
-                        )
-                    )
+                    .position(LatLng(
+                        place.LatLng[0].toString().toDouble(),
+                        place.LatLng[1].toString().toDouble()))
                     .icon(
-                        BitmapHelper.vectorToBitMap(
-                            this,
-                            R.drawable.outline_location_on_black_36dp,
-                            ContextCompat.getColor(this, R.color.teal_200)
-                        )
+                        BitmapHelper.vectorToBitMap(this, R.drawable.outline_location_on_black_36dp, ContextCompat.getColor(this, R.color.teal_200))
                     )
             )
             if (marker != null) {
                 marker.tag = places
             }
+
+        }
 
         googleMap.addPolyline(PolylineOptions().add(local7,local3).width(20f).color(Color.BLUE))
         googleMap.addPolyline(PolylineOptions().add(local1,local8).width(20f).color(Color.RED))
@@ -210,8 +201,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    data class ZonaAzul(
-        val LatLng: Array<Number>,
+    data class ZonaAzul (
+        val LatLng:Array<Number>,
         val title: String,
         val snippet: String
     )
@@ -228,19 +219,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         startActivity(intentConsultaVeiculo)
 
     }
-
-
-
-    fun expand(view: View) {
-        var v : Int = 0
-        if (itinerario.visibility == GONE) {
-            v = VISIBLE
-        } else {
-            v = GONE
-        }
-        TransitionManager.beginDelayedTransition(layoutItinerario, AutoTransition())
-        itinerario.visibility = v
-    }
-
 
 }
