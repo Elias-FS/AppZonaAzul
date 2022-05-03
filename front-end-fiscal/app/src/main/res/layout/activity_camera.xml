@@ -13,7 +13,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tire foto dos 4 lados do carro"
+        android:text="Tire as fotos do veículo"
         android:layout_gravity="center_horizontal"
         android:textSize="25dp"
         android:layout_marginBottom="10dp"
@@ -129,6 +129,11 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/arrow_left_and_right"
+        android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,7 +175,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
 
 
         <com.google.android.material.button.MaterialButton
