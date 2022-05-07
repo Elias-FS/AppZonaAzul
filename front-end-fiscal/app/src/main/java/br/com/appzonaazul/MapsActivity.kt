@@ -56,6 +56,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         puxarNome()
 
 
+            places.forEach { x -> println(x.snippet) }
+
         // Navegação dos botões da barra de menu
         binding.btnNavigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {

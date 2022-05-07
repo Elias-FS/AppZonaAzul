@@ -6,11 +6,7 @@ const db = app.firestore();
 const colTicket = db.collection("Ticket")
 const collIrregularidades = db.collection("Irregularidade");
 const colZonaAzul = db.collection("ZonaAzul");
-
-
-
-
-
+const payment = db.collection("payment");
 
 
 
@@ -57,9 +53,6 @@ function getErrorMessage(code: number): string {
   }
   return message;
 }
-
-
-
 
 export const addNewIrregularidade = functions
   .region("southamerica-east1")
@@ -111,7 +104,7 @@ export const findByPlate = functions
     let result: CallableResponse
 
     //Array de tickets
-   // const itinerario: Array<Tickets> = [];
+    // const itinerario: Array<Tickets> = [];
 
     const snapshot = await colTicket.get()
 
@@ -184,6 +177,7 @@ function analyzeTicket(p: Tickets): number {
   return 0;
 }
 
+
 /**
  * Função que dado o código de erro obtido na analyzeIrregularidade,
  * devolve uma mensagem
@@ -200,6 +194,7 @@ function getErrorMessageTicket(code: number): string {
   }
   return message;
 }
+
 
 //Adicionar itinerario
 export const addNewTicket = functions
@@ -251,28 +246,123 @@ export const addNewTicket = functions
     return result;
   });
 
-  export const getTickets = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const tickets : FirebaseFirestore.DocumentData = [];
-      const snapshot = await colTicket.get();
-      snapshot.forEach((doc) => {
-        
-        tickets.push(doc.data());
-      });
-      response.status(200).json(tickets);
+export const getTickets = functions
+  .region("southamerica-east1")
+  .https.onRequest(async (request, response) => {
+    const tickets: FirebaseFirestore.DocumentData = [];
+    const snapshot = await colTicket.get();
+    snapshot.forEach((doc) => {
+
+      tickets.push(doc.data());
     });
+    response.status(200).json(tickets);
+  });
 
 
 export const getZonaAzul = functions
-    .region("southamerica-east1")
-    .https.onRequest(async (request, response) => {
-      const itinerario : FirebaseFirestore.DocumentData = [];
-      const snapshot = await colZonaAzul.get();
-      snapshot.forEach((doc) => {
-        
-        itinerario.push(doc.data());
-      });
-      response.status(200).json(itinerario);
-    });
+  .region("southamerica-east1")
+  .https.onRequest(async (request, response) => {
+    const itinerario: FirebaseFirestore.DocumentData = [];
+    const snapshot = await colZonaAzul.get();
+    snapshot.forEach((doc) => {
 
+      itinerario.push(doc.data());
+    });
+    response.status(200).json(itinerario);
+  });
+
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random()*(max - min + 1)) + min;
+}
+
+function verifyCard(card: cardInformation) {
+  let error: number;
+  functions.logger.info(card.cardNumber.toString().length);
+  error = 0;
+  if (card.cardNumber == null ||  card.cardNumber.toString().length != 16) {
+    error = 1;
+  }
+  if (card.cvv == null || card.cvv.toString().length != 3) {
+    error = 1;
+  }
+  if (card.date == null) {
+    error = 1;
+  }
+  if (card.name == null) {
+    error = 1;
+  }
+  if (card.value == null) {
+    error = 1;
+  }
+  return error;
+}
+
+function generateToken(size: number) {
+  let token = "";
+  const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+    "abcdefghijklmnopqrstuvwxyz0123456789";
+  const n = Math.floor(size);
+  if (n >= 8) {
+    let count = 0;
+    while (count < n) {
+      token += alfabeto.charAt(getRandomInt(0, (alfabeto.length -1)));
+      count++;
+    }
+    return token;
+  } else {
+    return "";
+  }
+}
+
+/**
+ * Verifica se houve algum erro no cartão
+ * @param {number} error - código de erro
+ * @return {string} mensagem de erro ou sucesso
+ */
+function errorPayment(error: number) {
+  let message: string;
+  message = "";
+  if (error === 0) {
+    message = "Sucesso";
+  }
+  if (error === 1) {
+    message = "Dados do cartão inválidos";
+  }
+
+  return message;
+}
+
+export const paymentSimulator = functions
+    .region("southamerica-east1")
+    .https.onCall((data, context) => {
+      const tokenGenerated = generateToken(64);
+      const resp : SimulatorResponse = {
+        token: tokenGenerated,
+        type: "",
+        message: "",
+      };
+      const card: cardInformation = {
+        cardNumber: data.cardNumber,
+        cvv: data.cvv,
+        name: data.name,
+        date: data.date,
+        value: data.value,
+      };
+
+      resp.message = errorPayment(verifyCard(card));
+
+      if (resp.message === "Sucesso") {
+        if (getRandomInt(0, 1) === 0) {
+          resp.type = "TRANSACAO_NAO_AUTORIZADA";
+          resp.message = "Transação negada";
+        } else {
+          resp.type = "TRANSACAO_AUTORIZADA";
+        }
+      } else {
+        resp.type = "TRANSACAO_NAO_EFETUADA";
+      }
+      payment.add(resp);
+      return resp;
+    });
