@@ -163,38 +163,6 @@ export const getAllTickets = functions
   });
 
 
-/**
-* Função que analisa se um produto é válido para ser gravado no banco.
-* Exemplo de validação na entrada. Complemente com as regras que achar
-* importante.
-* @param {Tickets} p - Objeto produto a ser validado.
-* @return {number} - Retorna 0 se válido ou o código de erro.
-**/
-function analyzeTicket(p: Tickets): number {
-  if (!p.placaVeiculo) {
-    return 1;
-  }
-  return 0;
-}
-
-
-/**
- * Função que dado o código de erro obtido na analyzeIrregularidade,
- * devolve uma mensagem
- * @param {number} code - Código do erro
- * @return {string} - String com a mensagem de erro.
- */
-function getErrorMessageTicket(code: number): string {
-  let message = "";
-  switch (code) {
-    case 1: {
-      message = "Ticket não foi inserido";
-      break;
-    }
-  }
-  return message;
-}
-
 
 //Adicionar itinerario
 export const addNewTicket = functions
@@ -271,6 +239,42 @@ export const getZonaAzul = functions
     response.status(200).json(itinerario);
   });
 
+
+/**
+* Função que analisa se um produto é válido para ser gravado no banco.
+* Exemplo de validação na entrada. Complemente com as regras que achar
+* importante.
+* @param {Tickets} p - Objeto produto a ser validado.
+* @return {number} - Retorna 0 se válido ou o código de erro.
+**/
+function analyzeTicket(p: Tickets): number {
+  if (!p.placaVeiculo) {
+    return 1;
+  }
+  return 0;
+}
+
+
+/**
+ * Função que dado o código de erro obtido na analyzeIrregularidade,
+ * devolve uma mensagem
+ * @param {number} code - Código do erro
+ * @return {string} - String com a mensagem de erro.
+ */
+function getErrorMessageTicket(code: number): string {
+  let message = "";
+  switch (code) {
+    case 1: {
+      message = "Ticket não foi inserido";
+      break;
+    }
+  }
+  return message;
+}
+
+
+
+
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -315,6 +319,31 @@ function generateToken(size: number) {
     return "";
   }
 }
+
+
+function generateCodPix(size: number) {
+  let token = "";
+  const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+    "abcdefghijklmnopqrstuvwxyz0123456789";
+  const n = Math.floor(size);
+  if (n >= 8) {
+    let count = 0;
+    while (count < n) {
+      token += alfabeto.charAt(getRandomInt(0, (alfabeto.length -1)));
+      count++;
+    }
+    return token;
+  } else {
+    return "";
+  }
+}
+
+export const pix = functions
+  .region("southamerica-east1")
+  .https.onCall((data, context) => {
+    return generateCodPix(64)
+  })
+
 
 /**
  * Verifica se houve algum erro no cartão
@@ -366,3 +395,15 @@ export const paymentSimulator = functions
       payment.add(resp);
       return resp;
     });
+
+    export const funcaoTeste = functions.
+    region("southamerica-east1").
+    https.onCall((data, context) => {
+      functions.logger.info("Hello logs!");
+      const p ={
+        teste: "teste",
+      };
+      payment.add(p);
+    });
+
+
