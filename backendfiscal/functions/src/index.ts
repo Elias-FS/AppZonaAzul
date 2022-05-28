@@ -5,9 +5,9 @@ const app = admin.initializeApp();
 const db = app.firestore();
 const colTicket = db.collection("Ticket")
 const collIrregularidades = db.collection("Irregularidade");
-const colZonaAzul = db.collection("ZonaAzul");
 const payment = db.collection("payment");
-
+const colZonaAzul = db.collection("ZonaAzul")
+const colZonaAzulCidadao = db.collection("ZonaAzulCidadao")
 
 
 interface CallableResponse {
@@ -162,8 +162,68 @@ export const getAllTickets = functions
     return itinerario;
   });
 
+  //Pegar todos os tickets
+export const getZonaAzul = functions
+.region("southamerica-east1")
+.https.onCall(async () => {
+  // retorna todos os tickets
+  const zonaAzul: Array<ZonaAzul> = [];
+  const snapshot = await colZonaAzul.get()
 
+  let tempMarker: ZonaAzul;
+  snapshot.forEach((doc) => {
+    const d = doc.data();
+    tempMarker = {
+      LatLng: d.LatLng,
+      title: d.title,
+      snippet: d.snippet
+    };
+    zonaAzul.push(tempMarker);
+  });
+  return zonaAzul;
+});
 
+  //Pegar todos os tickets
+  export const getZonaAzulFiscal = functions
+  .region("southamerica-east1")
+  .https.onCall(async () => {
+    // retorna todos os tickets
+    const zonaAzul: Array<ZonaAzul> = [];
+    const snapshot = await colZonaAzul.get()
+  
+    let tempMarker: ZonaAzul;
+    snapshot.forEach((doc) => {
+      const d = doc.data();
+      tempMarker = {
+        LatLng: d.LatLng,
+        title: d.title,
+        snippet: d.snippet
+      };
+      zonaAzul.push(tempMarker);
+    });
+    return zonaAzul;
+  });
+
+    //Pegar todos os tickets
+    export const getZonaAzulCidadao = functions
+    .region("southamerica-east1")
+    .https.onCall(async () => {
+      // retorna todos os tickets
+      const zonaAzulCidadao: Array<ZonaAzulCidadao> = [];
+      const snapshot = await colZonaAzulCidadao.get()
+    
+      let tempMarker: ZonaAzulCidadao;
+      snapshot.forEach((doc) => {
+        const d = doc.data();
+        tempMarker = {
+          longitude: d.longitude,
+          latitude: d.latitude
+        };
+        zonaAzulCidadao.push(tempMarker);
+      });
+      return zonaAzulCidadao;
+    });
+  
 //Adicionar itinerario
 export const addNewTicket = functions
   .region("southamerica-east1")
@@ -227,7 +287,7 @@ export const getTickets = functions
   });
 
 
-export const getZonaAzul = functions
+/*export const getZonaAzul = functions
   .region("southamerica-east1")
   .https.onRequest(async (request, response) => {
     const itinerario: FirebaseFirestore.DocumentData = [];
@@ -238,7 +298,7 @@ export const getZonaAzul = functions
     });
     response.status(200).json(itinerario);
   });
-
+*/
 
 /**
 * Função que analisa se um produto é válido para ser gravado no banco.
@@ -344,7 +404,6 @@ export const pix = functions
     return generateCodPix(64)
   })
 
-
 /**
  * Verifica se houve algum erro no cartão
  * @param {number} error - código de erro
@@ -357,9 +416,8 @@ function errorPayment(error: number) {
     message = "Sucesso";
   }
   if (error === 1) {
-    message = "Dados do cartão inválidos";
+    message = "Saldo insuficiente";
   }
-
   return message;
 }
 
@@ -384,17 +442,17 @@ export const paymentSimulator = functions
 
       if (resp.message === "Sucesso") {
         if (getRandomInt(0, 1) === 0) {
-          resp.type = "TRANSACAO_NAO_AUTORIZADA";
-          resp.message = "Transação negada";
-        } else {
           resp.type = "TRANSACAO_AUTORIZADA";
+        } else {
+          resp.type = "TRANSACAO_NAO_AUTORIZADA";
+          resp.message = "Transação negada,  saldo insuficiente";
         }
-      } else {
-        resp.type = "TRANSACAO_NAO_EFETUADA";
-      }
+      } 
       payment.add(resp);
       return resp;
     });
+
+
 
     export const funcaoTeste = functions.
     region("southamerica-east1").
