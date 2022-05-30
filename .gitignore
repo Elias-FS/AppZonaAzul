@@ -18,6 +18,3 @@ local.properties
 .idea/
 /build.gradle
 /gradlew.bat
-.local.properties
-.idea
-/.idea/build
