@@ -366,7 +366,6 @@ export const paymentSimulator = functions
       payment.add(resp);
       return resp;
     });
-
 export const addMessagingToken = functions
     .region("southamerica-east1")
     .https.onCall(async (data,context) => {
@@ -374,7 +373,7 @@ export const addMessagingToken = functions
 
     // com o uso do logger, podemos monitorar os erros e o que há.
       functions.logger.info("addMessagingToken - Iniciada.");
-      
+
       const i = data.token
       // inclua aqui a validacao.
       const errorCode = !i;
@@ -388,7 +387,7 @@ export const addMessagingToken = functions
             payload: JSON.parse(JSON.stringify({ docId: null })),
           };
         console.log(result);
-      } 
+      }
       else {
         result = {
           status:"ERROR",
@@ -404,7 +403,7 @@ export const addMessagingToken = functions
             horaInicio: d.horaInicio,
             horaFim: d.horaFim
           }
-    
+
           if (data.placaVeiculo === plateTicket.placaVeiculo) {
             const docRef = await colTicket.doc(doc.id)
             docRef.update({token: i})
@@ -412,10 +411,19 @@ export const addMessagingToken = functions
               status:"SUCCESS",
               message:"Token registrada",
               payload: JSON.parse(JSON.stringify({ docId: docRef}))
-            } 
+            }
           }
         });
       }
     return result;
   }
-)      
+)
+    export const funcaoTeste = functions.
+    region("southamerica-east1").
+    https.onCall((data, context) => {
+      functions.logger.info("Hello logs!");
+      const p ={
+        teste: "teste",
+      };
+      payment.add(p);
+    });
