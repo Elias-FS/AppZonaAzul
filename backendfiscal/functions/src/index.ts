@@ -366,3 +366,56 @@ export const paymentSimulator = functions
       payment.add(resp);
       return resp;
     });
+
+export const addMessagingToken = functions
+    .region("southamerica-east1")
+    .https.onCall(async (data,context) => {
+      let result: CallableResponse;
+
+    // com o uso do logger, podemos monitorar os erros e o que há.
+      functions.logger.info("addMessagingToken - Iniciada.");
+      
+      const i = data.token
+      // inclua aqui a validacao.
+      const errorCode = !i;
+      if (errorCode) {
+        // gravar o erro no log e preparar o retorno.
+        functions.logger.error("addMessagingToken " +
+          "- Erro ao registrar token:"),
+          result = {
+            status: "ERROR",
+            message: 'No token',
+            payload: JSON.parse(JSON.stringify({ docId: null })),
+          };
+        console.log(result);
+      } 
+      else {
+        result = {
+          status:"ERROR",
+          message:"Bad Call",
+          payload: JSON.parse(JSON.stringify({ docId: null })) + data.token.toString() + data.placaVeiculo.toString()
+        }
+        // registrar token pois está ok.
+        const snapshot = await colTicket.get();
+        snapshot.forEach(async (doc) => {
+          const d = doc.data()
+          let plateTicket: Tickets = {
+            placaVeiculo: d.placaVeiculo,
+            horaInicio: d.horaInicio,
+            horaFim: d.horaFim
+          }
+    
+          if (data.placaVeiculo === plateTicket.placaVeiculo) {
+            const docRef = await colTicket.doc(doc.id)
+            docRef.update({token: i})
+            result = {
+              status:"SUCCESS",
+              message:"Token registrada",
+              payload: JSON.parse(JSON.stringify({ docId: docRef}))
+            } 
+          }
+        });
+      }
+    return result;
+  }
+)      
