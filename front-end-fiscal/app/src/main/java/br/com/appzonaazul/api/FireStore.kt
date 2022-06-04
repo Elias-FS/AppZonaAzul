@@ -10,4 +10,7 @@ import com.google.gson.JsonObject
 interface FireStore {
     @GET("/getTickets")
     fun getTickets() : Call<JsonArray>
+
+    @GET("/getZonaAzul")
+    fun getZonaAzul() : Call<JsonArray>
 }

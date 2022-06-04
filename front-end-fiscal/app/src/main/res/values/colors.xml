@@ -10,7 +10,10 @@
     <color name="azul3">#24659B</color>
     <color name="azul4">#3482C0</color>
     <color name="azul5">#46B2E2</color>
+    <color name="azul6">#1573ee</color>
     <color name="blackShadow">#302728</color>
     <color name="watergreen">#4CB5AB</color>
+    <color name="teste">#F44336</color>
+
 
 </resources>
