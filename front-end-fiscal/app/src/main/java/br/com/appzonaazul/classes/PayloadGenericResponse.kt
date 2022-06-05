@@ -3,18 +3,18 @@ package br.com.appzonaazul.classes
 import com.google.gson.annotations.SerializedName
 
 class PayloadGenericResponse {
-    class PayloadGenericResponse {
+
 
         enum class StatusType(val type: String) {
             ERROR("ERROR"),
             SUCCESS("SUCCESS");
         }
 
-        @SerializedName("placa")
+        @SerializedName("placaVeiculo")
         var placaVeiculo: String? = null;
-        @SerializedName("horaEntrada")
+        @SerializedName("horaInicio")
         var horaInicio: Any? = null;
-        @SerializedName("horaSaida")
+        @SerializedName("horaFim")
         var horaFim: Any? = null;
 
         override fun equals(other: Any?): Boolean {
@@ -36,5 +36,5 @@ class PayloadGenericResponse {
             result = 31 * result + (horaFim?.hashCode() ?: 0)
             return result
         }
-    }
+
 }

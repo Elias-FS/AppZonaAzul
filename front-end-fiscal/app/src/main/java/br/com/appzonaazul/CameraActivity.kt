@@ -126,7 +126,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK){
+        if (resultCode == RESULT_OK){
             val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
             val img: Drawable = BitmapDrawable(resources,bitmap)
             if(requestCode == 1) {

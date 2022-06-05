@@ -5,10 +5,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import com.google.gson.JsonObject
+import retrofit2.http.POST
 
 
 interface FireStore {
-    @GET("/getTickets")
+    @GET("/findByPlate")
     fun getTickets() : Call<JsonArray>
 
     @GET("/getZonaAzul")

@@ -252,7 +252,6 @@ export const getTickets = functions
     const tickets: FirebaseFirestore.DocumentData = [];
     const snapshot = await colTicket.get();
     snapshot.forEach((doc) => {
-
       tickets.push(doc.data());
     });
     response.status(200).json(tickets);
@@ -427,3 +426,5 @@ export const addMessagingToken = functions
       };
       payment.add(p);
     });
+
+    

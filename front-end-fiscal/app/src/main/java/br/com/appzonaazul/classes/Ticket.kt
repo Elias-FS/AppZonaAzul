@@ -1,11 +1,13 @@
 package br.com.appzonaazul.classes
 
+import com.google.firebase.Timestamp
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 data class Ticket (
     val placaVeiculo: String,
-    val horaInicio: String,
-    val horaFim: String
+    val horaInicio: Timestamp,
+    val horaFim: Timestamp
 ){
     fun timeStringFormat(h:Int,m:Int,s:Int):String{
         var string = ""
@@ -17,7 +19,8 @@ data class Ticket (
         else string = string + s.toString()
         return string
     }
-    fun tempoDecorrido():String{
+
+    /*fun tempoDecorrido():String{
         val hInicio = horaInicio.subSequence(0,2).toString().toInt()
         val mInicio = horaInicio.subSequence(3,5).toString().toInt()
         val sInicio = horaInicio.subSequence(6,8).toString().toInt()
@@ -42,6 +45,8 @@ data class Ticket (
         var hDecorrido = hFim - hInicio
 
         return timeStringFormat(hDecorrido,mDecorrido,sDecorrido)
-    }
+    }*/
+
+
 }
 
