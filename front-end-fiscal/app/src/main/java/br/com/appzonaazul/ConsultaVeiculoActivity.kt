@@ -20,6 +20,7 @@ import br.com.appzonaazul.classes.TimeGenericResponse
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Timestamp
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
@@ -30,12 +31,13 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.Response
+import java.time.LocalDateTime
 
 class ConsultaVeiculoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityConsultaVeiculoBinding
     private lateinit var tvHoraInicio:AppCompatTextView
     private lateinit var btnVerificar:AppCompatButton
-    private lateinit var etPlaca:AppCompatEditText
+    private lateinit var etPlaca: TextInputEditText
     private lateinit var tvHoraFim:AppCompatTextView
     private lateinit var tvTempoDecorrido:AppCompatTextView
     private lateinit var tvStatus:AppCompatTextView
@@ -55,34 +57,102 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
 
         functions = Firebase.functions("southamerica-east1")
 
+        etPlaca = findViewById(R.id.etPlaca)
+
         btnVerificar.setOnClickListener {
-            etPlaca = findViewById(R.id.etPlaca)
+            hideMyKeyboard()
 
             if (binding.etPlaca.text.isNullOrEmpty()) {
                 Snackbar.make(binding.etPlaca, "Informe a placa", Snackbar.LENGTH_LONG).show()
-            }
+            } else {
 
-            validateTicket(etPlaca.toString()).addOnCompleteListener { task ->
+                validateTicket(etPlaca.text.toString()).addOnCompleteListener { task ->
+                    Log.i(String.toString(), etPlaca.toString())
 
-                val result =
-                    gson.fromJson(task.result, FunctionsGenericResponse::class.java)
+                    Log.i(String.toString(), ticket.horaInicio.toString())
 
-                val payload =
-                    gson.fromJson(result.payload.toString(), PayloadGenericResponse::class.java)
+                    val result =
+                        gson.fromJson(task.result, FunctionsGenericResponse::class.java)
+
+                    Log.i(String.toString(), result.status.toString())
+
+                    val payload =
+                        gson.fromJson(result.payload.toString(), PayloadGenericResponse::class.java)
 
 
-                val horaEntrada =
-                    gson.fromJson(payload.horaInicio.toString(), TimeGenericResponse::class.java)
+                    val horaInicio =
+                        gson.fromJson(payload.horaInicio.toString(), TimeGenericResponse::class.java)
 
-                val horaSaida =
-                    gson.fromJson(payload.horaFim.toString(), TimeGenericResponse::class.java)
+                    val horaFim =
+                        gson.fromJson(payload.horaFim.toString(), TimeGenericResponse::class.java)
 
-                when(result.status.toString()){
-                    "SUCCESS" ->
-                     Log.i(String.toString(), ticket.horaInicio.toDate().toString())
+                    if(horaInicio!=null && horaFim!=null) {
+                        ticket.placaVeiculo = payload.placaVeiculo.toString()
+                        ticket.horaInicio =
+                            horaInicio.seconds?.let { it1 ->
+                                horaInicio.nanoseconds?.let { it2 ->
+                                    Timestamp(it1, it2)
+                                }
+                            }
+                        ticket.horaFim =
+                            horaFim.seconds?.let { it1 ->
+                                horaFim.nanoseconds?.let { it2 ->
+                                    Timestamp(it1, it2)
+                                }
+                            }
+                    }
+
+                    if(result.status.toString() == "SUCCESS") {
+
+                        val horasFinais = ticket.horaFim?.toDate()?.hours.toString()
+                        val minutosFinais = ticket.horaFim?.toDate()?.minutes.toString()
+
+                        val dataAtual = LocalDateTime.now()
+                        val horaAtual = dataAtual.hour
+
+                        val minutosAtual = dataAtual.minute
+                        val horaInicio  = ticket.horaInicio?.toDate()?.hours.toString()
+
+                        val minutesInicio = ticket.horaInicio?.toDate()?.minutes.toString()
+                        val minutosDecorrido = (horaAtual * 60) + minutosAtual
+                        val minutosInicio = ((horaInicio.toInt()  * 60 + minutesInicio.toInt()))
+                        val tempoDecorrido = (minutosDecorrido - minutosInicio) / 60
+
+
+                        val minutosValidacao = (horasFinais.toInt() * 60) + minutosFinais.toInt()
+
+                        Log.i(String.toString(), minutosDecorrido.toString())
+                        Log.i(String.toString(), minutosValidacao.toString())
+
+                        tvStatus = findViewById(R.id.tvStatus)
+
+                        if(horasFinais.toInt() >= horaAtual) {
+                            tvStatus.text = "Regular"
+                            binding.btnRegistrarIrregularidade.visibility = View.INVISIBLE
+                        } else{
+                            binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
+                            tvStatus.text = "Irregular"
+                        }
+
+                        tvHoraInicio =  findViewById(R.id.tvHoraInicio)
+                        tvHoraInicio.text = ticket.horaInicio?.toDate()?.hours.toString() + ":" + ticket.horaInicio?.toDate()?.minutes.toString()
+                        tvHoraFim.text = ticket.horaFim?.toDate()?.hours.toString() + ":" + ticket.horaFim?.toDate()?.minutes.toString()
+
+                    }
+
+                    //1 - dataAtual - dataInicio = tempoDecorrido if(tempoDecorrido < 0 )  ok else não ok
+                    //dataAtual = 15 dataInicio = 14
+                    //2 - dataAtual - dataFim = tempoTotal
+                    //3 - if tempoDecorrido > tempoTotal = irregular
+
+                    //---------------------------------------------------------------------
+
+                    //1 if dataFim > dataAtual {regular} else {irregular}
+
                 }
 
             }
+
 
         }
 
@@ -120,8 +190,6 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun consultaVeiculo(placa: String) {
         val firebase = RetrofitClient.getRetrofitInstance().create(FireStore::class.java)
         println(firebase.toString())
@@ -137,7 +205,6 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                 }
                 tvHoraInicio =  findViewById(R.id.tvHoraInicio)
                 tvHoraFim = findViewById(R.id.tvHoraFim)
-                tvTempoDecorrido = findViewById(R.id.tvTempoDecorrido)
                 tvStatus = findViewById(R.id.tvStatus)
 
                 for (it in tickets){
@@ -158,9 +225,7 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
                                     binding.btnRegistrarIrregularidade.visibility = View.VISIBLE
                                 }*/
                         }
-
                     }
-
                 }
             }
 
@@ -190,15 +255,16 @@ class ConsultaVeiculoActivity : AppCompatActivity() {
         val data = hashMapOf(
             "placaVeiculo" to placa
         )
+        Log.i(String.toString(), data.toString())
 
         return functions
             .getHttpsCallable("findByPlate")
             .call(data)
             .continueWith { task ->
                 val res = gson.toJson(task.result?.data)
+                Log.i(String.toString(), res.toString())
                 res
             }
-
     }
 
 

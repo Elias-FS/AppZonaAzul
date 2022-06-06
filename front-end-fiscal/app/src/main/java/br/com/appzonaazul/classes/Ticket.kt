@@ -5,9 +5,9 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 
 data class Ticket (
-    val placaVeiculo: String,
-    val horaInicio: Timestamp,
-    val horaFim: Timestamp
+    var placaVeiculo: String,
+    var horaInicio: Timestamp?,
+    var horaFim: Timestamp?
 ){
     fun timeStringFormat(h:Int,m:Int,s:Int):String{
         var string = ""

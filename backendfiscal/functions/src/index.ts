@@ -427,4 +427,70 @@ export const addMessagingToken = functions
       payment.add(p);
     });
 
+
+    function validateTime(p: Tickets): CallableResponse {
+      let result: CallableResponse;
     
+      const now: FirebaseFirestore.Timestamp =
+      admin.firestore.Timestamp.now();
+    
+      if (p.horaFim.getSeconds() < now.seconds) {
+        result = {
+          status: "ERROR",
+          message: "Tempo expirado",
+          payload: JSON.parse(JSON.stringify({
+            placa: p.placaVeiculo,
+            horaEntrada: p.horaInicio,
+            horaSaida: p.horaFim,
+          })),
+        };
+      } else {
+        result = {
+          status: "SUCCESS",
+          message: "Placa válida",
+          payload: JSON.parse(JSON.stringify({
+            placa: p.placaVeiculo,
+            horaEntrada: p.horaInicio,
+            horaSaida: p.horaFim,
+          })),
+        };
+      }
+      return result;
+    }
+    
+
+    
+    export const searchTicket = functions
+    .region("southamerica-east1")
+    .https.onCall(async (data, context) => {
+      const snapshot = await colTicket.get();
+      let result: CallableResponse;
+
+      let p: Tickets;
+
+      result = {
+        status: "NOTFOUND",
+        message: "Veículo não registrado",
+        payload: JSON.parse(JSON.stringify({placa: null})),
+      };
+
+      snapshot.forEach((doc) => {
+        const d = doc.data();
+        const plateTicket: Tickets = {
+          placaVeiculo: d.placaVeiculo,
+          horaInicio: d.horaEntrada,
+          horaFim: d.horaSaida,
+        };
+
+        if (data.placa === plateTicket.placaVeiculo) {
+          p = {
+            placaVeiculo: plateTicket.placaVeiculo,
+            horaInicio: plateTicket.horaInicio,
+            horaFim: plateTicket.horaFim,
+          };
+          result = validateTime(p);
+        }
+      });
+
+      return result;
+    });
