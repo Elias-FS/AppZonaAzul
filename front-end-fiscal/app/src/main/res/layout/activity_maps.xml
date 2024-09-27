@@ -3,6 +3,7 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
@@ -10,62 +11,244 @@
     tools:context=".MapsActivity"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
+
+
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="350dp"
-        android:layout_margin="8dp"
-        android:background="@color/azul5">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            map:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="06:00 - 07:00"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:textSize="10sp"/>
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            android:layout_gravity="center">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginLeft="10dp"
-            >
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Av. Tales Moraes"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        </com.google.android.material.card.MaterialCardView>
+                <androidx.appcompat.widget.LinearLayoutCompat
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Itinerário"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:layout_gravity="center"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="06:00 - 07:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 1"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="07:00 - 08:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 2"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="08:00 - 09:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 3"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="09:00 - 10:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 4"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="10:00 - 11:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 5"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="12:00 - 13:00"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRua6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Rua 6"
+                            android:textSize="20dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btnNavigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="06:00 - 07:00"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="15dp"
-            android:textSize="10sp"/>
+            android:background="@color/azul1"
+            app:itemTextColor="@color/white"
+            app:itemRippleColor="@color/white"
+            app:itemIconTint="@color/white"
+            app:menu="@menu/bottom_navigation_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="125dp"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Av. Kevin Silva"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </fragment>
 

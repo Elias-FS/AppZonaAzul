@@ -27,19 +27,19 @@
     </androidx.cardview.widget.CardView> -->
 
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="300dp"
                 android:layout_height="180dp"
-                android:layout_marginTop="70dp"
-                android:src="@drawable/logo"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logoza"
                 android:layout_gravity="center_horizontal"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Blue Zone"
+                android:text="Upward"
                 android:textStyle="bold"
                 android:textSize="40sp"
                 android:textColor="@color/azul1"
@@ -51,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnOpenConsultarVeiculo"
@@ -59,7 +60,6 @@
             android:layout_height="200dp"
             android:text="CONSULTAR\nVEÍCULO"
             android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
             android:layout_marginTop="80dp"
             android:drawableTop="@drawable/outline_directions_car_white_36dp"
             android:paddingTop="20dp"
@@ -77,5 +77,20 @@
             android:paddingTop="20dp"
             app:cornerRadius="50dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <!--android:id="@+id/btnOpenRegistrarIrregularidade"-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAreaIrregular"
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:text="Área Irregular"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/outline_wrong_location_white_36dp"
+        android:paddingTop="20dp"
+        app:cornerRadius="30dp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

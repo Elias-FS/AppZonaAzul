@@ -2,7 +2,9 @@ package br.com.appzonaazul
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat.postDelayed
 import br.com.appzonaazul.databinding.ActivityHomeBinding
 
 
@@ -25,6 +27,11 @@ class HomeActivity : AppCompatActivity() {
             openWindowItinerario()
         }
 
+        binding.btnAreaIrregular.setOnClickListener {
+            //clicar para ir consultar o veiculo
+            abrirTelaRegistrarIrregularidade()
+        }
+
     }
     private fun abrirTelaConsultarVeiculo() {
         //navegar para a outra activity
@@ -37,7 +44,12 @@ class HomeActivity : AppCompatActivity() {
         //navegar para a outra activity
         val openItinerario = Intent(this, MapsActivity::class.java)
         startActivity(openItinerario)
+    }
 
+    private fun abrirTelaRegistrarIrregularidade() {
+        //navegar para a outra activity
+        val intentRegistrarIrregularidade = Intent(this, CameraActivity::class.java)
+        startActivity(intentRegistrarIrregularidade)
     }
 }
 
